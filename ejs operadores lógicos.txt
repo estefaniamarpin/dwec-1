@@ -1,10 +1,10 @@
 1-
-if (!(age < 14 || 90 < age));
+if (!(age >= 14 && age <= 90))
 
-if (age > 14 && 90 > age);
+if (age < 14 || age > 90)
 
 2-
-tercero
+primero y tercero
 
 3-
 let nombre = prompt ('Escriba su nombre');
