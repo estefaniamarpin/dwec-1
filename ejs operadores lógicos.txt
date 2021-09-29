@@ -14,12 +14,12 @@ if (nombre == 'Admin'){
 
     if (contraseña == 'TheMaster'){
         alert('Bienvenido');
-    } else if (contraseña ===''|contraseña === ''){
+    } else if (contraseña ==''||contraseña == null){
         alert('Cancelado');
     } else {
         alert('Contraseña incorrecta');
     }
-} else if (nombre === null|nombre === ''){
+} else if (nombre == null||nombre == ''){
     alert('Cancelado');
 } else{
     alert('no te conozco');
