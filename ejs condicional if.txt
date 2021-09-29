@@ -4,9 +4,9 @@
 
 	if (nombre == 'ECMAScript') {
 		alert ('¡Correcto!')
-		} else {
-			alert ('¿No lo sabes? ¡ECMAScript!')
-		}
+	} else {
+		alert ('¿No lo sabes? ¡ECMAScript!')
+	}
 	
 3- let num = prompt ('Escriba un número', '')
 
