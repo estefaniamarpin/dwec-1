@@ -15,3 +15,13 @@ do{
     num = prompt('Ingrese un número');
 } while (num<=100 && num);
 
+let n = prompt('Escriba un número')
+prime:
+for (let i = 2; i <= n; i++){
+    for (let j=2; j < i; j++){
+        if(i % j == 0){
+            continue prime
+        }
+    }
+    alert(i)
+}
