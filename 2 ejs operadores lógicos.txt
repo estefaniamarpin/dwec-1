@@ -1,0 +1,26 @@
+1-
+if (!(age >= 14 && age <= 90))
+
+if (age < 14 || age > 90)
+
+2-
+primero y tercero
+
+3-
+let nombre = prompt ('Escriba su nombre');
+
+if (nombre == 'Admin'){
+    let contraseña = prompt ('Escriba su contraseña')
+
+    if (contraseña == 'TheMaster'){
+        alert('Bienvenido');
+    } else if (contraseña ==''||contraseña == null){
+        alert('Cancelado');
+    } else {
+        alert('Contraseña incorrecta');
+    }
+} else if (nombre == null||nombre == ''){
+    alert('Cancelado');
+} else{
+    alert('no te conozco');
+};
