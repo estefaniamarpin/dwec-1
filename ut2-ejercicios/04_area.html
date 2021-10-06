@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Area</title>
+</head>
+<body>
+    <script>
+        let area; let perimetro; let lado; let base; let altura; let radio;
+        let figura = prompt("Escribe la letra de tu figura");
+        switch (figura){
+            case "s":
+                do {
+                    lado = prompt("Escriba la longitud del lado");
+                }while(lado<=0);
+                area = lado^2;
+                perimetro = lado*4;
+                document.write("Cuadrado<br>lado:"+lado+"cm<br>área:"+area+"cm2<br>perímetro:"+perimetro+"cm");
+                break;
+            case "t":
+                do {
+                    base = prompt("Escriba la longitud de la base");
+                }while(base<=0);
+                do {
+                    altura = prompt("Escriba la altura");
+                }while(altura<=0);
+                area = (base*altura)/2;
+                perimetro = base*3;
+                document.write("Triángulo<br>base:"+base+"cm<br>altura:"+altura+"cm<br>área:"+area+"cm2<br>perímetro:"+perimetro+"cm");
+                break;
+            case "c":
+                do {
+                    radio = prompt("Escriba el radio del círculo");
+                }while(radio<=0);
+                area = Math.PI*radio^2;
+                perimetro = 2*Math.PI*radio;
+                document.write("Círculo<br>radio:"+radio+"cm<br>área:"+area+"cm2<br>perímetro:"+perimetro+"cm");
+                break;
+        }
+        
+    </script>
+</body>
+</html>

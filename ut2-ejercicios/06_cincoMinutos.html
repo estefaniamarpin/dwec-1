@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinco minutos</title>
+</head>
+
+<body>
+    <script>
+        let minutos2 = 0;
+        for (let hora = 9; hora <= 21; hora++) {
+            for (let minutos1 = 0; minutos1 < 6;) {
+                document.write(hora + ":" + minutos1 + minutos2 + "<br>");
+                if (minutos2 == 0) {
+                    minutos2 = 5;
+                } else {
+                    minutos2 = 0;
+                    minutos1++;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

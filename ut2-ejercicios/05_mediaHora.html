@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media hora</title>
+</head>
+<body>
+    <script>
+        let minutos = 0;
+        for(let hora = 9; hora<=21; hora++){
+            document.write(hora+":"+minutos+"0<br>");
+            if (minutos == 0){
+                minutos = 3;
+            } else {
+                minutos = 0
+            }
+            document.write(hora+":"+minutos+"0<br>");
+            if (minutos == 0){
+                minutos = 3;
+            } else {
+                minutos = 0
+            }
+        }
+    </script>
+</body>
+</html>
