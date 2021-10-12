@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pares</title>
+</head>
+<body>
+    <script>
+        let result;
+        function esPar(num) {
+            if (num == 0){
+                result = true;
+            } else if (num == 1) {
+                result = false;
+            } else {
+                esPar(num-2);
+            }
+            return result;
+        }
+
+        alert(esPar(7));
+    </script>
+</body>
+</html>
