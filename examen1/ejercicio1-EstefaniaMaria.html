@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+<body>
+    <script>
+        let operador;
+        let n1;
+        let n2;
+        let salir=false;
+
+        function pedirOperandos() {
+            n1 = +prompt("Escriba su primer operando");
+            n2 = +prompt("Escriba su segundo operando");
+            if(isNaN(n1)||isNaN(n2)){
+                alert("Número no válido.");
+                pedirOperandos();
+            }
+        }
+
+        function suma(op1,op2){
+            result = op1+op2;
+            return result;
+        }
+
+        function resta(op1,op2){
+            result = op1-op2;
+            return result;
+        }
+
+        function multiplicacion(op1,op2){
+            result = op1*op2;
+            return result;
+        }
+
+        function division(op1,op2){
+            result = op1/op2;
+            return result;
+        }
+        
+        function resto(op1,op2){
+            result = op1%op2;
+            return result;
+        }
+
+        function exponente(op1,op2){
+            result = op1**op2;
+            return result;
+        }
+
+        do {
+            while (operador != "+"&&operador != "-"&&operador != "*"&&operador != "/"&&operador != "%"&&operador != "**"&&operador != "terminar"){
+                operador = prompt("Indique la operación que piensa realizar (+,-,*,/,%,**) o escriba terminar para salir:");
+            };                
+                
+            switch (operador) {
+            case "+":
+                do{
+                    pedirOperandos();
+                } while (n1<=0||n2<=0);
+                suma(n1,n2);
+                alert(result);
+                operador="";
+                break;
+            case "-":
+                do{
+                    pedirOperandos();
+                } while (n1<=0||n2<=0);
+                resta(n1,n2);
+                alert(result);
+                operador="";
+                break;
+            case "*":
+                do{
+                    pedirOperandos();
+                } while (n1<=0||n2<=0);
+                multiplicacion(n1,n2);
+                alert(result);
+                operador="";
+                break;
+            case "/":
+                do{
+                    pedirOperandos();
+                } while (n1<=0||n2<=0);
+                division(n1,n2);
+                alert(result);
+                operador="";
+                break;
+            case "%":
+                do{
+                    pedirOperandos();
+                } while (n1<=0||n2<=0);
+                resto(n1,n2);
+                alert(result);
+                operador="";
+                break;
+            case "**":
+                do{
+                    pedirOperandos();
+                } while (n1<=0||n2<=0);
+                exponente(n1,n2);
+                alert(result);
+                operador="";
+                break;
+            case "terminar":
+                salir=true;
+                break;
+        }
+        } while (salir==false);
+    </script>
+</body>
+</html>
