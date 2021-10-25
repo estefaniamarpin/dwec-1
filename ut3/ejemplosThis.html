@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejemplos this</title>
+</head>
+<body>
+    <script>
+        
+        //2
+        let calculator = {
+            read() {
+                this.a = +prompt("Escriba un valor");
+                this.b = +prompt("Escriba otro valor");
+            },
+            sum(){
+                return this.a+this.b;
+            },
+            mul(){
+                return this.a*this.b;
+            }
+        };
+
+        calculator.read();
+        alert( calculator.sum() );
+        alert( calculator.mul() );
+        //3
+        let ladder = {
+        step: 0,
+        up() {
+            this.step++;
+            return this;
+        },
+        down() {
+            this.step--;
+            return this;
+        },
+        showStep: function() {
+            alert( this.step );
+        }
+        };
+    </script>
+</body>
+</html>
