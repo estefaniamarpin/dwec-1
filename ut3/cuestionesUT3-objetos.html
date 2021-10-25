@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1
+        let ordenador = {
+            procesador: "i7",
+            ram: "12GB",
+            discoDuro: "1TB"
+        };
+        //2
+        ordenador.ssd = "512GB";
+        delete ordenador.discoDuro;
+
+        ordenador["ssd"] = "512GB";
+        delete ordenador["discoDuro"];
+        //3
+        for(let key in ordenador){
+            alert(key);
+        }
+        //5
+        function Animal(nombre){
+            this.nombre = nombre;
+            this.hablar = function() {
+                return "Rrrrrr";
+            }
+        } 
+        
+    </script>
+</body>
+</html>
