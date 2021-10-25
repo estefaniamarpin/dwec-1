@@ -8,32 +8,46 @@
 </head>
 <body>
     <script>
-        let resp1;
-        let resp2;
-        let resp3;
+        let resp;
         let nota;
-        let resp4;
 
-        for(i=1; i<=20; i++){
-            
-            resp1 = prompt("¿El alumno está matriculado?");
-            if(resp1==n){
+        const NUMALUM=20;
+        const MODULOS=5;
+
+        for(i=1; i<=NUMALUM; i++){
+            resp = prompt("¿El alumno está matriculado?");
+            if(resp=="n"){
                 continue;
-            } else if(resp1==s){
-                resp2 = prompt("Ha anulado la matrícula?");
-                if(resp2==s){
+            } else if(resp=="s"){
+                resp = prompt("¿Ha anulado la matrícula?");
+                if(resp=="s"){
                     continue;
-                } else {
-                    for(j=0; j<=5; j++){
-                        
+                } else if (resp=="n") {
+                    for(j=0; j<5; j++){
+                        prompt("Introduzca la nota:");
+                        resp = prompt("¿Está matriculado en más módulos?");
+                        if(resp=="n"){
+                            break;
+                        } else if (resp=="s"){
+                            continue;
+                        } else {
+                            alert("Respuesta inválida, repita la nota.");
+                            j--;
+                        }
                     }
+                } else {
+                    alert("Respuesta inválida.");
+                    i--;
                 }
             } else {
+                alert("Respuesta inválida.")
                 i--;
                 continue;
             }
-            resp3 = prompt("¿Es el último alumno?")
-            if(resp3==s) break;
+            resp = prompt("¿Era el último alumno?");
+            if(resp=="s") {
+                break;
+            } 
         }
     </script>
 </body>
