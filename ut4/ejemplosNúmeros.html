@@ -15,11 +15,23 @@
         //2
         //Es por la pérdida de precisión. Se arreglaría multiplicando por 10.
         //3
-        function readNumber(num) {
-            while (num==NaN){
-
+        function readNumber() {
+            do {
+                num=prompt('Ingrese un valor numérico:');
+            } while (!isFinite(num));
+            if (num == "" || num == null){
+                return null;
             }
+            return Number(num);
         }
+        //4
+        //Por la pérdida de precisión de los decimales.
+        //5
+        function randomInteger(min, max){
+            let result=min+Math.random()*(max+1-min);
+            return Math.floor(result);
+        }        
+        
     </script>
 </body>
 </html>
