@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let nomDisco, artista, año, tipo="", local, prestado;
+        function Disco(nomDisco="", artista="", año="", tipo="", local=0, prestado=false){
+            this.nomDisco=nomDisco;
+            this.artista=artista;
+            this.año=año;
+            this.tipo=tipo;
+            this.local=local;
+            this.prestado=prestado;
+
+            this.cambiarEstanteria = function(num){
+                this.local=num;
+            }
+            this.cambiarPrestado = function(){
+                if (this.prestado==false){
+                    this.prestado=true;
+                } else this.prestado=false;
+            }
+            this.info = function(){
+                let mensaje="";
+                for (let key in this){
+                    mensaje+=this[key]+"\n";
+                    if (key=="prestado"){
+                        break;
+                    }
+                }
+                alert(mensaje);
+            }
+        }
+
+        nomDisco=prompt("Nombre del disco:");
+        artista=prompt("Grupo de música o cantante:");
+        año=prompt("Año de publicación:");
+        do{
+            tipo=prompt("Tipo de música:");
+        } while (tipo!="rock"&&tipo!="pop"&&tipo!="punk"&&tipo!="indie")
+        local=prompt("Localización:");
+        
+        let disco = new Disco(nomDisco, artista, año, tipo, local);
+
+        do{
+            resp = +prompt("MENÚ:\n 1)Mostrar la info del disco \n 2)Cambiar estantería \n 3)Prestar \n 4)Devolver \n 0)Terminar");
+            switch (resp) {
+                case 1:
+                    disco.info();
+                    break;
+                case 2:
+                    let num = +prompt("Indique el número de la estanteria:");
+                    disco.cambiarEstanteria(num);
+                    break;
+                case 3:
+                    if (disco.prestado==true){
+                        alert("Ya está prestado.");
+                    } else{
+                        disco.cambiarPrestado();
+                    }
+                    break;
+                case 4:
+                    if (disco.prestado==false){
+                        alert("Ya está devuelto.");
+                    } else{
+                        disco.cambiarPrestado();
+                    }
+                    break;
+            }
+        } while (resp!=0)
+        
+    </script>
+</body>
+</html>

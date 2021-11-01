@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let mensaje = "";
+        let cuenta = {
+            titular: "Alex",
+            saldo: 0
+        };
+        function ingresar(cantidad){
+            this.saldo += cantidad;
+            alert("Ha ingresado "+cantidad+".");
+        }
+        function extraer(extracción){
+            this.saldo -= extracción;
+            alert("Ha extraido "+extracción+".");
+        }
+        cuenta.informar = function(){
+            alert("Titular de la cuenta:"+this.titular+"\nSaldo:"+this.saldo);
+        }
+        cuenta.saldoMáximo = 1000;
+        for (let key in cuenta){
+            mensaje+=key+" ";
+        }
+        alert(mensaje);
+        mensaje = "";
+        cuenta.fechaApertura = "01/11/2021";
+        for (let key in cuenta){
+            mensaje+=key+" ";
+        }
+        alert(mensaje);
+        mensaje = "";
+        delete cuenta.saldoMáximo;     
+        for (let key in cuenta){
+            mensaje+=key+" ";
+        }
+        alert(mensaje);
+    </script>
+</body>
+</html>
