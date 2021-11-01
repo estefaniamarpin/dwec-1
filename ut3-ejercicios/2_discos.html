@@ -20,11 +20,13 @@
             this.cambiarEstanteria = function(num){
                 this.local=num;
             }
+
             this.cambiarPrestado = function(){
                 if (this.prestado==false){
                     this.prestado=true;
                 } else this.prestado=false;
             }
+
             this.info = function(){
                 let mensaje="";
                 for (let key in this){
@@ -73,7 +75,6 @@
                     break;
             }
         } while (resp!=0)
-        
     </script>
 </body>
 </html>
