@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let x, y;
+        function Vector(x, y){
+            this.x = x;
+            this.y = y;
+            this.longitud = (this.x**2+this.y**2)**(1/2);
+
+            this.getX = function(){
+                return x;
+            }
+
+            this.getY = function(){
+                return y;
+            }
+
+            this.setX = function(newX){
+                this.x = newX;
+            }
+
+            this.setY = function(newY){
+                this.y = newY;
+            }
+
+            this.sumar = function(newX, newY){
+                let sumX = this.x+newX;
+                let sumY = this.y+newY;
+                let resultado = "x= "+sumX+"\ny= "+sumY;
+                return resultado;
+            }
+
+            this.restar = function(newX, newY){
+                let resX = this.x-newX;
+                let resY = this.y-newY;
+                let resultado = "x= "+resX+"\ny= "+resY;
+                return resultado;
+            }
+        }
+        console.log(new Vector(1,2).sumar(2, 3));
+        console.log(new Vector(1,2).restar(2, 3));
+        console.log(new Vector(3, 4).longitud);
+    </script>
+</body>
+</html>
