@@ -10,13 +10,52 @@
     <script>
         //1
         function camelize(str){
+            let nuevoStr = "";
             let arr = str.split('-');
-            for (let key of arr){
-                =key[0].toUpperCase()+key.slice(1);
+            for (i = 0; i < arr.length; i++){
+                cadena = arr[i];
+                if (i > 0){
+                    cadena = cadena[0].toUpperCase()+key.slice(1);
+                }
+                nuevoStr += cadena;
             }
-            let result = arr.join('');
-            alert(result);
+            return nuevoStr;
         }
+        //2
+        function filterRange(arr, a, b){
+            let result = arr.filter(item => item >= a && item <= b);
+            return result;
+        }
+        let arr = [5, 3, 8, 1];
+
+        let filtered = filterRange(arr, 1, 4);
+
+        alert( filtered );
+        //3
+        function filterRangeInPlace(arr, a, b){
+            newArray = arr.filter(item => {
+                if(a <= item && item <= b){
+                return true;
+                }else return false;
+            })
+            return newArray;
+        }
+
+        let arr = [5, 3, 8, 1];
+
+        let result = filterRangeInPlace(arr, 1, 4);
+
+        alert(result);
+        //4
+        let arr = [5, 2, 1, -10, 8];
+        function compareNumeric(a, b) {
+            if (a > b) return 1;
+            if (a == b) return 0;
+            if (a < b) return -1;
+        }
+        arr.sort(compareNumeric);
+        arr.reverse();
+        alert(arr);
     </script>
 </body>
 </html>
