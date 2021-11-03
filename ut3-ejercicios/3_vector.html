@@ -24,23 +24,25 @@
 
             this.setX = function(newX){
                 this.x = newX;
+                this.longitud = (this.x**2+this.y**2)**(1/2);
             }
 
             this.setY = function(newY){
                 this.y = newY;
+                this.longitud = (this.x**2+this.y**2)**(1/2);
             }
 
             this.sumar = function(newX, newY){
                 let sumX = this.x+newX;
                 let sumY = this.y+newY;
-                let resultado = "x= "+sumX+"\ny= "+sumY;
+                let resultado = new Vector(sumX, sumY);
                 return resultado;
             }
 
             this.restar = function(newX, newY){
                 let resX = this.x-newX;
                 let resY = this.y-newY;
-                let resultado = "x= "+resX+"\ny= "+resY;
+                let resultado = new Vector(resX, resY);
                 return resultado;
             }
         }
