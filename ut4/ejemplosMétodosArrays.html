@@ -31,14 +31,14 @@
         let filtered = filterRange(arr, 1, 4);
 
         alert( filtered );
-        //3
+        //3 (no va)
         function filterRangeInPlace(arr, a, b){
-            newArray = arr.filter(item => {
-                if(a <= item && item <= b){
-                return true;
-                }else return false;
-            })
-            return newArray;
+            for (let i = 0; i< arr.length; i++) {
+                if(a > arr[i] || arr[i] > b){
+                    arr.splice(i, 1);
+                    i--;
+                }
+            }
         }
 
         let arr = [5, 3, 8, 1];
@@ -56,6 +56,37 @@
         arr.sort(compareNumeric);
         arr.reverse();
         alert(arr);
+        //5
+        function copySorted(arr){
+            return arr.slice().sort()
+        }
+        let arr = ["HTML", "JavaScript", "CSS"];
+
+        let sorted = copySorted(arr);
+
+        alert( sorted );
+        alert( arr );
+        //7
+        let john = { name: "John", age: 25 };
+        let pete = { name: "Pete", age: 30 };
+        let mary = { name: "Mary", age: 28 };
+
+        let users = [ john, pete, mary ];
+
+        let names = users.map(item => item.name);
+
+        alert( names );
+        //8
+        let john = { name: "John", surname: "Smith", id: 1 };
+        let pete = { name: "Pete", surname: "Hunt", id: 2 };
+        let mary = { name: "Mary", surname: "Key", id: 3 };
+
+        let users = [ john, pete, mary ];
+
+        let usersMapped = users.map(user => ({fullname:`${user.name} ${user.surname}`, id: user.id}));
+
+        alert( usersMapped[0].id ) // 1
+        alert( usersMapped[0].fullName ) // John Smith
     </script>
 </body>
 </html>
