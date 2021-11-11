@@ -4,13 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ej1</title>
 </head>
 <body>
     <script>
-        function palindromo(cadena){
-            
+        let cadena = "La ruta nos aportó otro paso natural";
+        function palindromo(str){
+            str = cadena.toLowerCase();
+            sinEspacio = str.split(" ").join("");
+            str2 = sinEspacio.split("").reverse().join("");
+            if (sinEspacio==str2){
+                alert(`'${str}' es un palíndromo`);
+            } else alert(`'${str}' no es un palíndromo`);
         }
+
+        palindromo(cadena);
+
+
     </script>
 </body>
 </html>
