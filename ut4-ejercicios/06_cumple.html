@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ej6</title>
+</head>
+<body>
+    <script>
+        let cumple = new Date();
+        cumple.setDate(+prompt("Introduzca el día de su cumpleaños:"));
+        cumple.setMonth(+prompt("Introduzca el mes de su cumpleaños:"));
+        cumple.setFullYear(cumple.getFullYear + 1);
+        let milisegundos = Math.round(cumple.getTime()-Date.now().getTime());
+        let dias = milisegundos/(24 * 60 * 60 * 1000);
+        alert("Quedan "+milisegundos+" milisegundos y "+dias+" días para tu cumple.");
+    </script>
+</body>
+</html>

@@ -4,11 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ej3</title>
 </head>
 <body>
     <script>
-        
+        let num = +prompt("Escriba un número entero:");
+        let exponencial = num.toExponential();
+        let decimales = num.toFixed(4);
+        let binario = num.toString(2);
+        let octal = num.toString(8);
+        let hexadecimal = num.toString(16);
+        alert(num
+            +"\nvalor exponencial: "+exponencial
+            +"\n4 decimales: "+decimales
+            +"\nbinario: "+binario
+            +"\noctal: "+octal
+            +"\nhexadecimal: "+hexadecimal);
     </script>
 </body>
 </html>

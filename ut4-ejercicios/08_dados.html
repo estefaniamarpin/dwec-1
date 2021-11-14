@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ej8</title>
+</head>
+<body>
+    <script>
+        let suma, nuevoValor;
+        let nTiradas = new Map();
+
+        function randomInteger(min, max){
+            let result=min+Math.random()*(max+1-min);
+            return Math.floor(result);
+        } 
+
+        for(let i=0; i<36000;i++) {
+            suma = randomInteger(1,6) + randomInteger(1,6);
+            if(nTiradas.has(suma)){
+                nuevoValor = nTiradas.get(suma)+1;
+                nTiradas.set(suma,nuevoValor);
+            }else {
+                nTiradas.set(suma,1);
+            }
+        }
+
+        nTiradas.forEach( (nVeces, suma) => {
+            alert("suma: "+suma+"\nveces: "+nVeces);
+        });
+    </script>
+</body>
+</html>
