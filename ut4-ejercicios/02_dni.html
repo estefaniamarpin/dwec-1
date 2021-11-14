@@ -8,13 +8,26 @@
 </head>
 <body>
     <script>
-        let tabla = new Array("T","R","W","A","G","M","Y","F","P","D","X","B","N","J","Z","S","Q","V","H","L","C","K","E");
-        function comprob(num){
-            if(num.startsWith('X')||num.startsWith('Y')||num.startsWith('Z')){
-
-            } else {
-                
+        let letras = new Array("T","R","W","A","G","M","Y","F","P","D","X","B","N","J","Z","S","Q","V","H","L","C","K","E");
+        function comprob(str){
+            num = str.slice(0,8);
+            if(num.startsWith('X')){ //nie
+                num = num.replace("X","0");
+                pos = num%23
+            } else if(num.startsWith('Y')){
+                num = num.replace("Y","1");
+                pos = num%23
+            } else if(num.startsWith('Z')){
+                num = num.replace("Z","2");
+                pos = num%23
+            }else { //dni
+                pos = num%23
             }
+            if(str[8]==letras[pos])
+                alert("Correcto");
+            else
+                alert("Incorrecto");
+                
         } 
 
         resp = prompt("Escriba su DNI o NIE:");
