@@ -1,0 +1,6 @@
+objetos, tipdatos, clases, 7.2get/set, 
+clase-> herencia,
+obj->objliteral, (coprefer), this, func constr (ejemplo completo ej Accumulator), 
+tipdat->num, string, arrays(-excep raro), metArray(*splice*),iterables(Array.from), map/set,9,10, fecha/hora
+conf prop-> get/set
+clases->sintax, herencia
