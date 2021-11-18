@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej 2</title>
+</head>
+<body>
+    <script>
+        function primerDia(anno){
+            let fecha = new Date();
+            fecha.setFullYear(anno);
+            for(let i=0; i<12; i++){
+                fecha.setMonth(i);
+                fecha.setDate(1);
+                let dias = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado']; 
+                let diaSem = dias[fecha.getDay()]; //convierte día numérico del mes en día de la semana
+                console.log(`El 1 del mes ${i+1} del año ${fecha.getFullYear()} cae en ${diaSem}\n`);
+            }
+        }
+
+        primerDia(2020);
+    </script>
+</body>
+</html>

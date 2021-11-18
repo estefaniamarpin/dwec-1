@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej 1</title>
+</head>
+<body>
+    <script>
+        function posicionPar(arr){
+            let result = arr.filter((item, index) => index%2==0); //guarda los elementos pares del array en otro array(result)
+            return result;
+        }
+
+        let prueba1 = posicionPar(["a", "b", 1, "d", 2, "f", 3]);
+        console.log(prueba1);
+    </script>
+</body>
+</html>

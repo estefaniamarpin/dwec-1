@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej 4</title>
+</head>
+<body>
+    <script>
+        class Libro{
+            constructor(isbn, titulo, autor, anno){
+                this.isbn = isbn;
+                this.titulo = titulo;
+                this.autor = autor;
+                this.anno = anno;
+            }
+
+            toString(){
+                console.log(`ISBN: ${this.isbn}\ntitulo: ${this.titulo}\nautor: ${this.autor}\naño: ${this.anno}\nactual: ${this.actual}`);
+            }
+
+            get actual(){
+                let annoActual = new Date();
+                let annoLibro = new Date();
+                annoLibro.setFullYear(this.anno);
+                if(annoActual.getFullYear()==annoLibro.getFullYear())
+                    return true;
+                  else  
+                    return false;
+            }
+        }
+
+        let libro1 = new Libro("8974545","Castellano", "Lorenzo Silva", 2021);
+        libro1.toString();
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 5</title>
+</head>
+<body>
+    <script>
+        //copia ejercicio anterior
+        class Libro{
+            constructor(isbn, titulo, autor, anno){
+                this.isbn = isbn;
+                this.titulo = titulo;
+                this.autor = autor;
+                this.anno = anno;
+            }
+
+            toString(){
+                console.log(`ISBN: ${this.isbn}\ntitulo: ${this.titulo}\nautor: ${this.autor}\naño: ${this.anno}\nactual: ${this.actual}`);
+            }
+
+            get actual(){
+                let annoActual = new Date();
+                let annoLibro = new Date();
+                annoLibro.setFullYear(this.anno);
+                if(annoActual.getFullYear()==annoLibro.getFullYear())
+                    return true;
+                  else  
+                    return false;
+            }
+        }
+
+        //nuevo
+        class LibroTexto extends Libro{
+            constructor(isbn, titulo, autor, anno, estudios){
+                super(isbn, titulo, autor, anno);
+                this.estudios = estudios;
+            }
+
+            toString(){
+                console.log(`ISBN: ${this.isbn}\ntitulo: ${this.titulo}\nautor: ${this.autor}\naño: ${this.anno}\nactual: ${this.actual}\nestudios: ${this.estudios}`);
+            }
+        }
+
+        let libroTexto = new LibroTexto("1111", "Formación y orientación laboral", "José Carlos González Acedo", 2021, "Ciclos");
+        libroTexto.toString();
+    </script>
+</body>
+</html>
