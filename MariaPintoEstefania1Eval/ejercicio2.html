@@ -8,19 +8,21 @@
 </head>
 <body>
     <script>
-        function primerDia(anno){
+        let hoy = new Date();
+        let dias = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+
+        function primerDia(anno = hoy.getFullYear()+1){
             let fecha = new Date();
             fecha.setFullYear(anno);
             for(let i=0; i<12; i++){
                 fecha.setMonth(i);
-                fecha.setDate(1);
-                let dias = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado']; 
+                fecha.setDate(1); 
                 let diaSem = dias[fecha.getDay()]; //convierte día numérico del mes en día de la semana
                 console.log(`El 1 del mes ${i+1} del año ${fecha.getFullYear()} cae en ${diaSem}\n`);
             }
         }
 
-        primerDia(2020);
+        primerDia();
     </script>
 </body>
 </html>
