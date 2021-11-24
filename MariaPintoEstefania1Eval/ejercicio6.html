@@ -8,22 +8,111 @@
 </head>
 <body>
     <script>
+        //ejercicio 4
+        class Libro{
+            constructor(isbn, titulo, autor, anno){
+                this.isbn = isbn;
+                this.titulo = titulo;
+                this.autor = autor;
+                this.anno = anno;
+            }
+
+            toString(){ //cambiado para este ejericio
+                return `ISBN: ${this.isbn}\ntitulo: ${this.titulo}\nautor: ${this.autor}\naño: ${this.anno}\nactual: ${this.actual}`;
+            }
+
+            get actual(){
+                let annoActual = new Date();
+                let annoLibro = new Date();
+                annoLibro.setFullYear(this.anno);
+                if(annoActual.getFullYear()==annoLibro.getFullYear())
+                    return true;
+                  else  
+                    return false;
+            }
+        }
+        //hasta aquí
+
         let disponibles = [];
         let prestados = [];
         do{
             resp = +prompt("MENÚ:\n 1) Añadir un libro \n 2) Ver datos de un libro \n 3) Prestar un libro \n 4) Devolver un libro \n 5) Terminar");
             switch (resp) {
                 case 1:
-
+                    nuevoLibro();
                     break;
                 case 2:
+                    datosLibro();
                     break;
                 case 3:
+                    prestarLibro();
                     break;
                 case 4:
+                    devolverLibro();
                     break;
             }
-        } while (resp!=5)
+        } while (resp!=5 && resp!=null);
+
+        function nuevoLibro(){
+            let isbn = prompt("ISBN:");
+            let titulo = prompt("Título:");
+            let autor = prompt("Autor:");
+            let anno = prompt("Año de publicación:");
+            let libro = new Libro(isbn, titulo, autor, anno);
+            disponibles.push(libro);
+        };
+
+        function datosLibro(){
+            let isbnPedido = prompt("ISBN:");
+            disponibles.forEach(element => {
+                if(element.isbn == isbnPedido){
+                    alert(`DISPONIBLE\n${element.toString()}`);
+                } else {
+                    prestados.forEach(element => {
+                        if(element.isbn == isbnPedido){
+                            alert(`PRESTADO\n${element.toString()}`);
+                        } else {
+                            alert(`El libro con ISBN "${isbnPedido}" no existe.`);
+                        }
+                    });
+                }
+            });
+        }
+
+        function prestarLibro(){
+            let isbnPedido = prompt("ISBN del libro a prestar:");
+            disponibles.forEach(element => {
+                if(element.isbn == isbnPedido){
+                    let confirm = prompt(`¿Está seguro de que desea prestar el libro con ISBN "${isbnPedido}"? (s/n)`);
+                    if(confirm=="s"){
+                        let pos = disponibles.indexOf(element);
+                        let libroPrestar = disponibles.slice(pos, pos+1);
+                        disponibles.splice(pos, 1);
+                        prestados.push(libroPrestar.pop());
+                    } else  alert("Operación cancelada.");
+                } else {
+                    alert(`El libro con ISBN "${isbnPedido}" no está disponible.`);
+                }
+            });
+        }
+
+        function devolverLibro(){
+            let isbnDevolver  = prompt("ISBN del libro a devolver:");
+            prestados.forEach(element => {
+                if(element.isbn == isbnDevolver){
+                    let confirm = prompt(`¿Está seguro de que desea devolver el libro con ISBN "${isbnDevolver}"? (s/n)`);
+                    if(confirm=="s"){
+                        let pos = prestados.indexOf(element);
+                        let libroDevolver = prestados.slice(pos, pos+1);
+                        prestados.splice(pos, 1);
+                        disponibles.push(libroDevolver.pop());
+                    } else  alert("Operación cancelada.");
+                } else {
+                    alert(`El libro con ISBN "${isbnDevolver}" no ha sido prestado.`);
+                }
+            });
+        }
+
     </script>
 </body>
 </html>
