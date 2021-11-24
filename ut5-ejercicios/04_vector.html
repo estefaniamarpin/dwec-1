@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ej4</title>
+</head>
+<body>
+    <script>
+        class Vector{
+            constructor(x, y){
+                this.x = x;
+                this.y = y;
+                this.longitud = Math.sqrt(x * 2 + y * 2);
+            }
+
+            get x() {
+                return this._x;
+            }
+            get y() {
+                return this._y;
+            }
+
+            set x(value) {
+                this._x = value;
+            }
+            set y(value) {
+                this._y = value;
+            }
+
+            sumar(x2, y2){
+                let vectorSuma = new Vector(x2, y2);
+                let resultSuma = new Vector(this.x+vectorSuma.x,this.y+vectorSuma.y);
+                return resultSuma;
+            }
+
+            restar(x2, y2){
+                let vectorResta = new Vector(x2, y2);
+                let resultResta = new Vector(this.x-vectorResta.x,this.y-vectorResta.y);
+                return resultResta;
+            }
+
+        }
+
+        console.log(new Vector(1,2).sumar(2, 3)); 
+        console.log(new Vector(1,2).restar(2, 3)); 
+        console.log(new Vector(3, 4).longitud); 
+    </script>
+</body>
+</html>

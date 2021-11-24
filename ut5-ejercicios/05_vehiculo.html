@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ej5</title>
+</head>
+<body>
+    <script>
+        class Vehiculo{
+            constructor(color, marca, modelo, velMax){
+                this.color=color;
+                this.marca=marca;
+                this.modelo=modelo;
+                this.velMax=velMax;
+            }
+
+            comenzar(){
+                alert("Encender motor");
+            }
+
+            parar(){
+                alert("Apagar motor");
+            }
+
+            distanciaMax(tiempo){
+                let distMax = this.velMax*tiempo;
+                alert(distMax);
+            }
+        }
+
+        class Coche extends Vehiculo{
+            constructor(color, marca, modelo, velMax=120){
+                super(color, marca, modelo, velMax);
+            }
+
+            parar(){
+                alert("Aparcar");
+            }
+        }
+
+        class Avion extends Vehiculo{
+            constructor(color, marca, modelo, velMax=1000){
+                super(color, marca, modelo, velMax);
+            }
+
+            comenzar(){
+                alert("Despegar");
+            }
+
+            parar(){
+                alert("Aterrizar");
+            }
+        }
+
+        let vehiculo1 = new Vehiculo("rojo", "x", "m", 160);
+        vehiculo1.comenzar();
+        vehiculo1.parar();
+        vehiculo1.distanciaMax(10);
+
+        let coche1 = new Coche("azul", "z", "t");
+        coche1.parar();
+
+        let avion1 = new Avion("blanco", "f", "s");
+        avion1.comenzar();
+        avion1.parar();
+    </script>
+</body>
+</html>
