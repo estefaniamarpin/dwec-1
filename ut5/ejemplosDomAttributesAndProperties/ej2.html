@@ -19,9 +19,18 @@
 
     <script>
         
-        let link = document.querySelector('a');
+        let link = document.querySelectorAll('a');
+        for (let elem of link){
+            let href = elem.getAttribute("href");
+            if(!href)
+                continue;
+            if (href.includes("://")&&!href.startsWith("http://internal.com")){
+                elem.style.color = 'orange';
+            }
+        }
         
-        link.style.color = 'orange';
+
+        
     </script>
 </body>
 </html>

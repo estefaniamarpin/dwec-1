@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        //3- "aaa" no pertenece a table
+
+        let ul = document.createElement('ul');
+        document.body.append(ul);
+        let contenido;
+        do{
+            contenido = prompt("¿Qué quiere añadir a la lista?");
+            if(contenido){
+                let li = document.createElement('li');
+                li.textContent = contenido;
+                ul.append(li);
+            }
+        } while(contenido);
+    </script>
+</body>
+</html>
