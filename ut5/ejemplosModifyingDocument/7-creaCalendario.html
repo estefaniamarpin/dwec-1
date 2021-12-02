@@ -28,7 +28,48 @@
 
   <script>
     function createCalendar(elem, year, month) {
-        
+      let fecha = new Date(year, month-1, 1); 
+      let diaSemana = fecha.getDay();
+      let fecha2 = new Date(year, month, -1);
+      let ultimoDia = fecha2.getDate();
+      
+      let tabla = document.createElement('table');
+      let filaSemana = document.createElement('tr');
+
+      let semana = ['MO','TU','WE','TH','FR','SA','SU'];
+
+      for(let dia of semana){ //primera fila
+        let th = document.createElement('th');
+        th.append(dia);
+        filaSemana.append(th);
+      }
+      tabla.append(filaSemana);
+      
+      if(diaSemana == 0)//domingo
+        diaSemana = 7;
+      //primeros huecos
+      let fila = document.createElement('tr');
+      for(i = 1; i < diaSemana; i++){
+        let td = document.createElement('td');
+        fila.append(td);
+      }
+
+      //dias mes
+      for(i = 1; i<ultimoDia; i++){
+        fecha = new Date(year, month-1, i);
+        diaSemana = fecha.getDay();
+        if(diaSemana == 1){
+          
+        }
+        let dia = document.createElement('td');
+        dia.append(i);
+        fila.append(dia);
+        if(diaSemana == 0){
+          tabla.append(fila);
+        }
+      }
+      
+      elem.append(tabla);
     }
 
     createCalendar(calendar, 2012, 9);
