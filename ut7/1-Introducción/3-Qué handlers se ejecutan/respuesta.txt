@@ -1,0 +1,1 @@
+Escribe 1 y 2, ya que no borra el primero porque el remove no hace referencia a la misma función que el add.
