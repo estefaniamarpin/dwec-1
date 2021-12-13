@@ -25,6 +25,10 @@
     content: '▼ ';
   }
 
+  .menu.open ul {
+    display: block;
+  }
+
 </style>
 </head>
 
@@ -45,8 +49,12 @@
     // Define esa nueva clase en el css
     // ayuda:  content: '▼ ';
 
-    let sweeties = document.getElementById('sweeties');
-    let title = sweeties.querySelector('title');
+    function menu(){
+      let padre=this.parentNode;
+      padre.classList.toggle("open");
+    }
+    let sweeties = document.querySelector('span');
+    sweeties.addEventListener("click", menu);
   </script>
 
 </body>
