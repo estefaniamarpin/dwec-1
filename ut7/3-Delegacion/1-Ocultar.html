@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="messages.css" />
+    <link rel="stylesheet" href="messages.css" />
     <meta charset="utf-8" />
   </head>
 
   <body>
-    <div>
+    <div id="container">
       <div class="pane">
         <h3>Horse</h3>
         <p>
@@ -16,6 +16,7 @@
           small multi-toed creature, Eohippus, into the large, single-toed
           animal of today.
         </p>
+        <button class="remove-button">[x]</button>
       </div>
       <div class="pane">
         <h3>Donkey</h3>
@@ -25,6 +26,7 @@
           African wild ass, E. africanus. The donkey has been used as a working
           animal for at least 5000 years.
         </p>
+        <button class="remove-button">[x]</button>
       </div>
       <div class="pane">
         <h3>Cat</h3>
@@ -35,35 +37,24 @@
           from other felids and felines. Cats are often valued by humans for
           companionship and for their ability to hunt vermin.
         </p>
+        <button class="remove-button">[x]</button>
       </div>
     </div>
 
     <script>
-      /***
-     AÑADE CADA BOTÓN EN UN DIV
-        El botón debería quedar:  <button class="remove-button">[x]</button>
-     A CADA BOTÓN, ASIGNALE EL EVENTO PARA QUE OCULTE TODO EL DIV
-     MODIFICA EL CSS (directamente en el archivo .css)
-     DEL DIV .pane Y DEL BUTTON .remove-class
-     PARA QUE EL BOTÓN ESTÉ ARRIBA A LA DERECHA:
-      - div.panel: position: relative
-      - button: position: absolute
-    ***/
-      let divs = document.querySelectorAll(".pane");
-      for(let div of divs){
-        div.innerHTML = "<button class='remove-button'>[x]</button>"+div.innerHTML;
-      }
-
-      function ocultar(){
-        let padre = this.parentNode;
-        padre.hidden = true;
-      }
-      
-      let botones = document.querySelectorAll("button");
-      for (let boton of botones){
-        boton.addEventListener("click", ocultar);
-      }
-      
+      /* Al hacer clic sobre un <button>, se tiene que eliminar el <div> que lo contiene
+         Utiliza delegación de eventos: debe haber sólo un eventListener en el contenedor
+      */
+        let contenedor = document.getElementById("container");
+        contenedor.addEventListener("click", ocultar);
+        function ocultar(evento){
+          let elemento = evento.target;
+          if (elemento.classList.contains("remove-button") == false){
+            return;
+          }
+          elemento.closest("div").hidden = true;
+          //elemento.parentElement.hidden = true;
+        }
     </script>
   </body>
 </html>

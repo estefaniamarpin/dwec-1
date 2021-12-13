@@ -50,8 +50,8 @@
     // ayuda:  content: '▼ ';
 
     function menu(){
-      let padre=this.parentNode;
-      padre.classList.toggle("open");
+      let padre = this.parentNode;
+      padre.classList.toggle("open"); //toggle añade cuando no existe
     }
     let sweeties = document.querySelector('span');
     sweeties.addEventListener("click", menu);
