@@ -2,6 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <style>
+      .esconder{
+        display: none;
+      }
+    </style>
   </head>
   <body>
     <ul class="tree" id="tree">
@@ -56,7 +61,15 @@
         Pistas: 
             * elemento.tagName contiene el tipo de elemento en mayúsculas (ej. DIV)
         ********************************/
-      // Tu código aquí...
+      tree.onclick = function (event){
+        let target = event.target;
+        if (target.tagName != "LI"){
+          return;
+        }
+        for (let elem of target.children){
+          elem.classList.toggle("esconder");
+        }
+      };
     </script>
   </body>
 </html>
