@@ -77,28 +77,35 @@
                      }
                 * Añade el array ordenado al tbody con tbody.append(...arrayOrdenado)
          * ************************/
-      grid.onclick = function(event){
-        let target = event.target;
-        if (target.tagName != "TH"){
+      grid.onclick = function(e){
+        if (e.target.tagName != "TH")
           return;
-        }
-        ordenar(target.cellIndex, target.dataset.type);
-      }
+        let th = e.target;
+        let tipo = th.dataset.type;
+        let tbody = grid.getElementsByTagName("TBODY")[0];
+        let filas = tbody.rows;
+        let arrayFilas = Array.from(filas);
+        let ordenado = arrayFilas.sort(ordenar);
 
-      function ordenar(colNum, tipo){
-        let tbody = document.querySelector("tbody");
-        let rows = Array.from(tbody.rows);
-        function comparar(filaA, filaB){
-          if (filaA.cells[pos].innerHTML > filaB.cells[pos].innerHTML )
+
+        tbody.append(...ordenado); //separa los elementos y los pasa individualmente
+
+        function ordenar(filaA, filaB){
+          let pos = th.cellIndex;
+          if (tipo == "string"){
+            if (filaA.cells[pos].innerHTML > filaB.cells[pos].innerHTML )
                 return 1;
             else
-                return -1
+                return -1;
+            } else {
+            if (+filaA.cells[pos].innerHTML > +filaB.cells[pos].innerHTML )
+                return 1;
+            else
+                return -1;
+            }
           }
+          
         }
-        rows.sort(comparar);
-        tbody.append(...rowsArray);
-
-      }
     </script>
   </body>
 </html>
