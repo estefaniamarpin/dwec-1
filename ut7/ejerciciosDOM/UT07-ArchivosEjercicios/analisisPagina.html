@@ -53,7 +53,27 @@
         <div id="info"></div>
     </div>
     <script>
-        
+        let div = document.getElementById("info");
+
+        //El número de párrafos de la página. 
+        let numP = document.querySelectorAll("p");
+        let mensaje = numP.length;
+        div.append(`Número de párrafos: ${mensaje}. `);
+        //El texto del segundo párrafo. 
+        mensaje = numP[1].textContent;
+        div.append(`Segundo párrafo: ${mensaje}. `);
+        //El número de enlaces de la página.
+        let numA = document.querySelectorAll("a");
+        mensaje = numA.length;
+        div.append(`Número de enlaces: ${mensaje}. `);
+        //La dirección del primer enlace. 
+
+        //La dirección del penúltimo enlace. 
+
+        //El número de enlaces que apuntan a http://prueba. 
+
+        //El número de enlaces del primer párrafo. 
+
     </script>
 </body>
 
