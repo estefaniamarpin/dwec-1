@@ -69,13 +69,18 @@
         //La dirección del penúltimo enlace. 
         mensaje += `Dirección del penúltimo enlace: ${numA[(numA.length)-2].href}. \n`;
         //El número de enlaces que apuntan a http://prueba. 
-        mensaje += `Número de enlaces de http://prueba: ${}. \n`;
+        let cont = 0;
+        for (let a of numA){
+            if(a.href=="http://prueba/"){
+                cont++;
+            }
+        }
+        mensaje += `Número de enlaces de http://prueba: ${cont}. \n`;
         //El número de enlaces del primer párrafo. 
         let numAPrimer = numP[0].querySelectorAll("a");
         mensaje += `Número de enlaces del primer párrafo: ${numAPrimer.length}.`;
 
         div.append(mensaje);
-
     </script>
 </body>
 

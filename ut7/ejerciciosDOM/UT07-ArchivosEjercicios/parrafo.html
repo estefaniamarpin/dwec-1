@@ -17,13 +17,15 @@
         let body = document.body;
         let textarea = document.querySelector("textarea");
 
-
         function crear(e){
             let target = e.target;
-            let contenido = "";
+            let p = document.createElement("p");
             if (target.id == "crear"){
-                contenido += textarea.value+"\n";
-                body.append(contenido);
+                p.append(textarea.value);
+                body.append(p);
+                if (textarea.value==""){
+                    alert("ERROR: escriba algo.")
+                }
             }
         }
 

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unidad 5 - Ejercicio 6</title>
+  </head>
+  <body>
+    <button id="crear">Generar planta</button>
+    <button id="borrar">Borrar</button>
+    <button id="mostrar">Mostrar nº filas</button>
+
+    <table id="floristeria"></table>
+
+    <script>
+      let tabla = document.getElementById("floristeria");
+
+      function gestion(event) {
+        let target = event.target;
+        if (target.id == "crear") {
+          let planta = document.createElement("tr");
+          let nombre = document.createElement("td");
+          nombre.append(prompt("Introduzca el nombre de la planta"));
+          let ubicacion = document.createElement("td");
+          ubicacion.append(prompt("Introduzca la ubicacion de la planta"));
+          let ejemplares = document.createElement("td");
+          ejemplares.append(prompt("Introduzca la cantidad de ejemplares"));
+          let flor = document.createElement("td");
+          flor.append(prompt("Introduzca el tipo de flor"));
+
+          planta.append(nombre, ubicacion, ejemplares, flor);
+          tabla.append(planta);
+        } else if (target.id == "borrar") {
+          let filas = document.querySelectorAll("tr");
+          let eliminar = filas[filas.length - 1];
+          eliminar.remove();
+        } else if (target.id == "mostrar") {
+          let cantidad = document.querySelectorAll("tr").length;
+          alert(`Hay ${cantidad} filas`);
+        }
+      }
+      document.body.addEventListener("click", gestion);
+    </script>
+  </body>
+</html>
