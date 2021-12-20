@@ -31,14 +31,26 @@
     </form>
 </body>
     <script>
-        let mueve = document.getElementById(mueve);
+        let ps = document.querySelectorAll("p");
+        let p = ps[0];
+        let textarea = document.querySelector("textarea");
+        let opcion;
+
+        function seleccion(e){
+            let target = e.target;
+            if (target.id == "productos"){
+                opcion = target.value;
+            }
+        }
         
         function añadir(e){
-            let seleccion = productos.textContent;
-            let textarea = document.getElementsByTagName("textarea");
-            textarea.append(seleccion);
+            let target = e.target;
+            if (target.id == "mueve"){
+                textarea.value += opcion+"\n";
+            }
         }
 
-        mueve.addEventListener("click", añadir);
+        p.addEventListener("change", seleccion);
+        p.addEventListener("click", añadir);
     </script>
 </html>

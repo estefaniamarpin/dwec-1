@@ -39,20 +39,37 @@
         </p>
     </div>
     <script>
-        let selectTam = document.getElementById("tam");//seleccionar select
-        let indiceOpcionSeleccionadaTam = selectTam.selectedIndex;//obtener índice del option seleccionado
-        let valorOpcionSeleccionadaTam = selectTam.options[indiceOpcionSeleccionadaTam].value;//obtener value del option seleccionado
-
-        let selectCol = document.getElementById("tam");
-        let indiceOpcionSeleccionadaCol = selectCol.selectedIndex;
-        let valorOpcionSeleccionadaCol = selectCol.options[indiceOpcionSeleccionadaCol].value;
+        let divs = document.querySelectorAll("div");
+        let div = divs[0];
+        let tam, col;
+        let texto = document.querySelectorAll("p");
 
         function cambiar(e){
-            let texto = document.getElementsByTagName("p");
-            texto.style.color("valorOpcionSeleccionadaCol");
+            let target = e.target;
+            let opcion = target.value;
+            
+            if (target.id == "tam"){
+                tam = opcion;
+            } else  {
+                col = opcion;
+            }
+
+            
         }
 
-        actualizar.addEventListener("click", cambiar);
+        function actualizar(e){
+            let target = e.target;
+            if (target.id == "actualizar"){
+                for (let p of texto){
+                    p.style.color=col;
+                    p.style.fontSize=tam;
+                }
+            }
+
+        }
+
+        div.addEventListener("change", cambiar);
+        div.addEventListener("click", actualizar);
     </script>
 </body>
 </html>

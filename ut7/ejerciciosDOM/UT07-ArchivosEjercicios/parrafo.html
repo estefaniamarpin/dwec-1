@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unidad 5 - Ejercicio 5</title>
+</head>
+<body>
+    <form>
+        <textarea cols="20" rows="8" id="caja"></textarea>
+        <input type="button" id="crear" value="Crear párrafo">
+    </form>
+
+    <script>
+        let form = document.querySelector("form");
+        let body = document.body;
+        let textarea = document.querySelector("textarea");
+
+
+        function crear(e){
+            let target = e.target;
+            let contenido = "";
+            if (target.id == "crear"){
+                contenido += textarea.value+"\n";
+                body.append(contenido);
+            }
+        }
+
+        form.addEventListener("click", crear);
+    </script>
+</body>
+</html>
