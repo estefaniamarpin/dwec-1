@@ -21,7 +21,6 @@
             width: 250px;
         }
     </style>
-    <script src="u5e08_berlin.js"></script>
 </head>
 
 <body>
@@ -52,15 +51,49 @@
 </body>
     <script>
         let table = document.querySelector("table");
+        let botones = document.getElementById("botones");
+        let p = document.querySelector("p");
+        let imagenes = document.querySelectorAll("img");
 
         function mostrar(e){
             let target = e.target;
-            let img = target.querySelector(img);
-            if (img.tagName == img){
-                
+            if (target.tagName == "IMG"){
+                p.innerHTML = `Esta es la parada de ${target.alt}.`;
+            }
+        }
+
+        function boton(e){
+            let target = e.target;
+            if (target.id == "roja"){
+                for(let imagen of imagenes){
+                    if (imagen.classList.contains("roja")){
+                        imagen.classList.toggle("borderoja");
+                    }
+                }
+            }
+            if (target.id == "verde"){
+                for(let imagen of imagenes){
+                    if (imagen.classList.contains("verde")){
+                        imagen.classList.toggle("bordeverde");
+                    }
+                }
+            }
+            if (target.id == "azul"){
+                for(let imagen of imagenes){
+                    if (imagen.classList.contains("azul")){
+                        imagen.classList.toggle("bordeazul");
+                    }
+                }
+            }
+            if (target.id == "borrar"){
+                for(let imagen of imagenes){
+                    imagen.classList.remove("borderoja", "bordeverde", "bordeazul");
+                    
+                }
             }
         }
 
         table.addEventListener("mouseover", mostrar);
+        botones.addEventListener("click", boton);
     </script>
 </html>

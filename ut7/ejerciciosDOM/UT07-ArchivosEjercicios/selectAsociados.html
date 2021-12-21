@@ -22,14 +22,12 @@
     <script>
       let formu = document.getElementById("formu");
       let provincia = document.getElementById("provincia");
-      formu.addEventListener("change", selecionar);
 
-      function selecionar(event) {
-        let target = event.target;
+      function selecionar(e) {
+        let target = e.target;
         if (target.id == "ccaa") {
           let comunidad = target.value;
-          let provincias;
-          let html;
+          let provincias, html;
           switch (comunidad) {
             case "1":
               provincias = ["Ávila","Burgos","León","Palencia","Salamanca","Segovia","Soria","Valladolid","Zamora"];
@@ -64,6 +62,8 @@
           }
         }
       }
+
+      formu.addEventListener("change", selecionar);
     </script>
   </body>
 </html>

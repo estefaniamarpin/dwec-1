@@ -13,33 +13,34 @@
     <table id="floristeria"></table>
 
     <script>
-      let tabla = document.getElementById("floristeria");
+      let floristeria = document.getElementById("floristeria");
 
-      function gestion(event) {
-        let target = event.target;
+      function gestionar(e) {
+        let target = e.target;
         if (target.id == "crear") {
           let planta = document.createElement("tr");
           let nombre = document.createElement("td");
-          nombre.append(prompt("Introduzca el nombre de la planta"));
           let ubicacion = document.createElement("td");
-          ubicacion.append(prompt("Introduzca la ubicacion de la planta"));
           let ejemplares = document.createElement("td");
-          ejemplares.append(prompt("Introduzca la cantidad de ejemplares"));
           let flor = document.createElement("td");
-          flor.append(prompt("Introduzca el tipo de flor"));
+
+          nombre.append(prompt("Nombre:"));
+          ubicacion.append(prompt("Ubicación:"));
+          ejemplares.append(prompt("Ejemplares:"));
+          flor.append(prompt("Flor:"));
 
           planta.append(nombre, ubicacion, ejemplares, flor);
-          tabla.append(planta);
+          floristeria.append(planta);
         } else if (target.id == "borrar") {
           let filas = document.querySelectorAll("tr");
-          let eliminar = filas[filas.length - 1];
-          eliminar.remove();
-        } else if (target.id == "mostrar") {
-          let cantidad = document.querySelectorAll("tr").length;
-          alert(`Hay ${cantidad} filas`);
+          let ultFila = filas[filas.length-1];
+          ultFila.remove();
+        } else {
+          let cant = document.querySelectorAll("tr").length;
+          alert(`Hay ${cant} filas en la tabla.`);
         }
       }
-      document.body.addEventListener("click", gestion);
+      document.body.addEventListener("click", gestionar);
     </script>
   </body>
 </html>
