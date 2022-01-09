@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Eventos y validación de formularios</title>
+</head>
+<body>
+    <section>
+        <h3 id="titulo">Hola</h3>
+        <a href="http://www.google.es">Google</a>
+    </section>
+    <script>
+        //1
+        let h3 = document.getElementById("titulo");
+        h3.onclick = function(e){
+            let target = e.target;
+            target.innerHTML = "Adiós";
+        }
+
+        //2
+        let h3 = document.getElementById("titulo");
+        function cambiar(e){
+            let target = e.target;
+            target.innerHTML = "Adiós";
+        }
+        h3.addEventListener("click", cambiar);
+    </script>
+</body>
+</html>
