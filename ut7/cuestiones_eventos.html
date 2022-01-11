@@ -10,19 +10,30 @@
     </section>
     <script>
         //1
-        let h3 = document.getElementById("titulo");
-        h3.onclick = function(e){
-            let target = e.target;
-            target.innerHTML = "Adiós";
-        }
+        // let h3 = document.getElementById("titulo");
+        // h3.onclick = function(e){
+        //     let target = e.target;
+        //     target.innerHTML = "Adiós";
+        // }
 
         //2
+        // let h3 = document.getElementById("titulo");
+        // function cambiar(e){
+        //     let target = e.target;
+        //     target.innerHTML = "Adiós";
+        // }
+        // h3.addEventListener("click", cambiar);
+
+        //3 no va
         let h3 = document.getElementById("titulo");
         function cambiar(e){
             let target = e.target;
             target.innerHTML = "Adiós";
+            e.preventDefault();
         }
         h3.addEventListener("click", cambiar);
+
+        
     </script>
 </body>
 </html>
