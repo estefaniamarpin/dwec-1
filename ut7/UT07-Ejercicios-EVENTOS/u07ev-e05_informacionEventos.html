@@ -35,6 +35,40 @@
         <h1>Teclado</h1>
         <div id="datosTeclado"></div>
     </div>
+    <script>
+        let raton = document.getElementById("raton");
+        let teclado = document.getElementById("teclado");
+        let divRaton = document.getElementById("datosRaton");
+        let divTeclado = document.getElementById("datosTeclado");
+
+        function posRaton(e) {
+            let xNavegador = e.clientX;
+            let yNavegador = e.clientY;
+            let xPantalla = e.screenX;
+            let yPantalla = e.screenY;
+            divRaton.textContent = `Navegador [${xNavegador},${yNavegador}] Pantalla [${xPantalla},${yPantalla}]`;
+            
+            raton.style.backgroundColor = "white";
+            teclado.style.backgroundColor = "white";
+        }
+
+        function tecla(e) {
+            let valor = e.key;
+            let codigo = e.code;
+            divTeclado.textContent = `Carácter [${valor}] \n Código [${codigo}]`;
+            teclado.style.backgroundColor = "#CCE6FF";
+        }
+
+        function click(e) {
+            raton.style.backgroundColor = "#FFFFCC";
+        }
+
+        document.documentElement.addEventListener("mousemove", posRaton);
+
+        document.documentElement.addEventListener("keydown", tecla);
+
+        document.documentElement.addEventListener("click", click);
+    </script>
 </body>
 
 </html>

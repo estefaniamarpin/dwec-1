@@ -30,6 +30,30 @@
         <h1>Posición</h1>
         <span class="posicion"></span>
     </div>
+    <script>
+        let html = document.documentElement;
+        let span = document.getElementsByClassName("posicion")[0];
+        let altoVentana = html.clientHeight;
+        let anchoVentana = html.clientWidth;
+        let medioAltura = altoVentana/2;
+        let medioAnchura = anchoVentana/2;
+
+        function zona(e){
+            let x = e.clientX;
+            let y = e.clientY;
+            if (x<medioAnchura && y<medioAltura) {
+                span.textContent = "izq arriba";
+            } else if (x<medioAnchura && y>medioAltura) {
+                span.textContent = "izq abajo";
+            } else if (x>medioAnchura && y<medioAltura) {
+                span.textContent = "dcha arriba";
+            } else if (x>anchoVentana/2 && y>altoVentana/2) {
+                span.textContent = "dcha abajo";
+            }
+        }
+
+        html.addEventListener("click", zona);
+    </script>
 </body>
 
 </html>

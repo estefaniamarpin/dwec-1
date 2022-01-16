@@ -44,7 +44,22 @@
     </div>
     <script>
         let contenedor = document.body;
-        contenedor.addEventListener("click", ocultar)
+
+        function ocultar(e){
+            let target = e.target;
+            if(target.tagName=="A"){
+                let p = target.previousElementSibling;
+                if(p.hidden == false){
+                    p.hidden = true;
+                    target.textContent = "Mostrar contenidos";
+                } else {
+                    p.hidden = false;
+                    target.textContent = "Ocultar contenidos";
+                }
+            }
+        }
+
+        contenedor.addEventListener("click", ocultar);
     </script>
 </body>
 
