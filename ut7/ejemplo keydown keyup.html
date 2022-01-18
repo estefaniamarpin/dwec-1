@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        pressed = new Set();
+        correcto = true;
+        function runOnKeys(func, ...keys){
+            document.onkeydown = function(e){
+                pressed.add(e.code);
+                for (let key of keys){
+                    if(!pressed.has(key)){
+                        correcto = false;
+                    }
+                }
+                if (correcto == true){
+                    func();
+                    pressed.clear();
+                }
+            }
+            document.onkeyup = function(e){
+                pressed.delete(e.code);
+            }
+        }
+
+        runOnKeys(
+            () => alert("¡Hola!"),
+            "KeyQ",
+            "KeyW"
+        );
+    </script>
+</body>
+</html>
