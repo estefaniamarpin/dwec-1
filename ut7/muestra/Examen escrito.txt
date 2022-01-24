@@ -1,0 +1,7 @@
+1. Hacer script para coger el valor de un atributo de tipo data de 2 formas distintas
+2. Diferencias entre childNode() y children()
+3. Pregunta sobre que hace un evento y donde. Ponia en amarillo el target y tenias que decir si lo ponia en un p o en un div
+4. Eliminar un evento puesto con addEventListener()
+
+
+0.5 ptos cada uno
