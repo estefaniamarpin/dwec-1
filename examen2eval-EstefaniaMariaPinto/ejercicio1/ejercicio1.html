@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Menú</title>
+    <link rel="stylesheet" href="estilos.css" />
+  </head>
+
+  <body>
+    <nav>
+      <ul class="menu">
+        <li>
+          <label for="drop-1" class="toggle">Service +</label>
+          <a href="#">Service</a>
+          <input type="checkbox" id="drop-1" />
+          <ul>
+            <li><a href="#">Service 1</a></li>
+            <li><a href="#">Service 2</a></li>
+            <li><a href="#">Service 3</a></li>
+          </ul>
+        </li>
+        <li>
+          <label for="drop-2" class="toggle">Portfolio +</label>
+          <a href="#">Portfolio</a>
+          <input type="checkbox" id="drop-2" />
+          <ul>
+            <li><a href="#">Portfolio 1</a></li>
+            <li><a href="#">Portfolio 2</a></li>
+            <li>
+              <!-- Second Tier Drop Down -->
+              <label for="drop-3" class="toggle">Works +</label>
+              <a href="#">Works</a>
+              <input type="checkbox" id="drop-3" />
+              <ul>
+                <li><a href="#">HTML/CSS</a></li>
+                <li><a href="#">jQuery</a></li>
+                <li><a href="#">Python</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <div>
+      <button id="borrarItem">Borrar item principal</button>
+      <button id="insertarItem">Insertar item final</button>
+    </div>
+    <div></div>
+    <script src="ejercicio1.js"></script>
+  </body>
+</html>

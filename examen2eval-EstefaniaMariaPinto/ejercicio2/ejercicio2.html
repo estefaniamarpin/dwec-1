@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio2</title>
+    <style>
+      .seleccionar {
+        background-color: yellow;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <button id="anadirLibro">Añadir</button>
+    </div>
+    <table id="tablaLibros">
+      <thead>
+        <tr>
+          <th>Titulo</th>
+          <th>Autor</th>
+          <th>ISBN</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-img="tiemposRecios.jfif">
+          <td>Tiempos recios</td>
+          <td>Mario Vargas Llosa</td>
+          <td class="isbn">978-84-204-3571-8</td>
+          <td><button>Mostrar</button></td>
+        </tr>
+        <tr data-img="sidi.jfif">
+          <td>Sidi</td>
+          <td>Arturo Pérez-Reverte</td>
+          <td class="isbn">978-84-204-3547-3</td>
+          <td><button>Mostrar</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <div>
+      <img id="portada" src="" />
+    </div>
+
+    <script src="libros.js"></script>
+    <script src="ejercicio2.js"></script>
+  </body>
+</html>
