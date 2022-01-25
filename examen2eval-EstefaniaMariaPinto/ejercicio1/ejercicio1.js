@@ -14,10 +14,10 @@ function eliminarItem(e){
         if (itemBorrar == label.textContent){
             let liBorrar = label.parentElement;
             liBorrar.remove();
-            alert("Item borrado correctamente.")
-        } else {
-            alert("El item solicitado no existe.")
-        }
+            alert("Item borrado correctamente.");
+            return;
+        } 
+    alert("El item solicitado no existe.");
     }
 }
 
@@ -38,13 +38,14 @@ function insertarItem(e){
                 let ulLabel = label.parentElement.querySelector("ul");
                 ulLabel.prepend(nuevoItem);
                 alert("Item añadido correctamente al principio.");
+                return;
             } else if (pos == "ult"){
                 let ulLabel = label.parentElement.querySelector("ul");
                 ulLabel.append(nuevoItem);
                 alert("Item añadido correctamente al final.");
+                return;
             } else alert("Posición no válida.");
-        } else {
-            alert("El item principal solicitado no existe.")
-        }
+        } 
     }
+alert("El item principal solicitado no existe.")
 }
