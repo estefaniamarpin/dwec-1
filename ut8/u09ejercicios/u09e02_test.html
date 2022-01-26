@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.Test</title>
+</head>
+<body>
+    <form name="test">
+        <h1>Test de Black Mirror</h1>
+        <p>¿Cuántas temporadas hay actualmente?</p>
+        <label><input name="temp" type="radio" value="2">2</label>
+        <label><input name="temp" type="radio" value="3">3</label>
+        <label><input name="temp" type="radio" value="5">5</label>
+        <p>Los episodios siguen una misma trama.</p>
+        <label><input name="trama" type="radio" value="v">Verdadero</label>
+        <label><input name="trama" type="radio" value="f">Falso</label>
+        <label><input name="trama" type="radio" value="n">Sí, pero sólo por temporadas</label>
+        <p>¿Qué tema relaciona todos los episodios?</p>
+        <label><input name="tema" type="radio" value="apoc">Inicio apocalipsis</label>
+        <label><input name="tema" type="radio" value="dist">Futuro tecnológico distópico</label>
+        <label><input name="tema" type="radio" value="mald">Espejos con maldiciones</label>
+        <p>¿En qué episodio encontramos elementos de otros?</p>
+        <label><input name="ep" type="radio" value="blm">Black Museum</label>
+        <label><input name="ep" type="radio" value="mh">Mirrors House</label>
+        <label><input name="ep" type="radio" value="brm">Broken Mirror</label>
+        <p>¿Te ha gustado la serie?</p>
+        <label><input name="like" type="radio" value="s">Sí</label>
+        <label><input name="like" type="radio" value="c">Claro</label>
+        <label><input name="like" type="radio" value="o">Obviamente</label>
+        <br>
+        <br>
+        <button type="button" value="enviar">enviar</button>
+    </form>
+    <script>
+        let form = document.forms.test;
+        let boton = document.querySelector("button");
+        boton.addEventListener("click", enviar);
+
+        let temp = document.form.temp;
+        let trama = document.form.trama;
+        let tema = document.form.tema;
+        let ep = document.form.ep;
+        let like = document.form.like;
+
+        function enviar(e){
+            let img = document.createElement("img");
+            if (temp == )
+        }
+    </script>
+</body>
+</html>
