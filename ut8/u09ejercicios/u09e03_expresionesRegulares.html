@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>expresiones regurales</title>
+</head>
+<body>
+    <form id="f">
+        <ul>
+            <li>
+                <label>Fecha de creación: <input type="text" name="fecha"></label>
+            </li>
+            <li>
+                <label>Cocinero: <input type="text" name="cocinero"></label>
+            </li>
+            <li>
+                <label>Destinatario: <input type="text" name="dest"></label>
+            </li>
+            <li>
+                <label>Gramos: <input type="text" name="g"></label>
+            </li>
+            <li>
+                <label>Composición: <input type="text" name="comp"></label>
+            </li>
+            <li>
+                <label>Número de cuenta de EEUU: <input type="text" name="nCuenta"></label>
+            </li>
+        </ul>
+    </form>
+    <script>
+        let form = document.forms[0];
+        let fecha = form.elements.fecha;
+        let cocinero = form.elements.cocinero;
+        let dest = form.elements.dest;
+        let g = form.elements.g;
+        let comp = form.elements.comp;
+        let nCuenta = form.elements.nCuenta;
+
+        let expFecha = /^(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/([0-9]{4})$/;
+        let expCocinero = /^([A-Z]{2})\W[0-9]{4}$/;
+        let expDest = /^([A-Z]{2,3})\_[a-z]+\:[0-9]{4}$/;
+        let expG = /^([1-5][0-9]{3})|([1-9][0-9]{2})$/;
+        let expComp = /^([1-9][0-9]*)g([A-Z]{1,2}[1-9]?){2}$/;
+        
+        fecha.onchange = function(e){
+            if (expFecha.test(fecha.value)){
+
+            } else alert("Fecha incorrecta");
+        }
+    </script>
+</body>
+</html>
