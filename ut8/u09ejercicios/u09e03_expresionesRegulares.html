@@ -43,11 +43,37 @@
         let expDest = /^([A-Z]{2,3})\_[a-z]+\:[0-9]{4}$/;
         let expG = /^([1-5][0-9]{3})|([1-9][0-9]{2})$/;
         let expComp = /^([1-9][0-9]*)g([A-Z]{1,2}[1-9]?){2}$/;
+        let expNCuenta;
         
         fecha.onchange = function(e){
             if (expFecha.test(fecha.value)){
 
-            } else alert("Fecha incorrecta");
+            } else alert("error1");
+        }
+        cocinero.onchange = function(e){
+            if (expCocinero.test(cocinero.value)){
+
+            } else alert("error2");
+        }
+        dest.onchange = function(e){
+            if (expDest.test(dest.value)){
+
+            } else alert("error3");
+        }
+        g.onchange = function(e){
+            if (expG.test(g.value)){
+
+            } else alert("error4");
+        }
+        comp.onchange = function(e){
+            if (expComp.test(comp.value)){
+
+            } else alert("error5");
+        }
+        nCuenta.onchange = function(e){
+            if (expNCuenta.test(nCuenta.value)){
+
+            } else alert("error6");
         }
     </script>
 </body>
