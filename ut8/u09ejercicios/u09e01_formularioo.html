@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1.Formulario</title>
+    <style>
+        .error{
+            border: 2px red solid;
+        }
+    </style>
 </head>
 <body>
     <form id="f">
@@ -49,8 +54,25 @@
         function ejecutar(){
             let form = document.forms[0];
             let nombre = form.elements.nombre;
-            nombre.addEventListener("change", )
-        }        
+            let artista = form.elements.artista;
+            let anno = form.elements.anno;
+            let tipo = form.elements.tipo;
+            let local = form.elements.local;
+            nombre.addEventListener("change", longitud20);
+            artista.addEventListener("change", longitud20);
+
+
+            function longitud20(string){
+                if(this.value.length > 20){
+                    this.classList.add("error");
+                } else{
+                    this.classList.remove("error");
+                }
+            }
+
+            
+        }
+
     </script>
 </body>
 </html>
