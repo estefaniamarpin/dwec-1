@@ -60,17 +60,45 @@
             let local = form.elements.local;
             nombre.addEventListener("change", longitud20);
             artista.addEventListener("change", longitud20);
+            anno.addEventListener("change", anno4);
+            local.addEventListener("change", numLocal);
+            form.addEventListener("submit", obligatorio);
 
 
-            function longitud20(string){
-                if(this.value.length > 20){
+            function longitud20(){
+                if(this.value.length > 20)
                     this.classList.add("error");
-                } else{
+                else
                     this.classList.remove("error");
-                }
+                
             }
 
-            
+            function anno4(){
+                if (!Number(this.value))
+                    this.classList.add("error");
+                else if (this.value.length != 4)
+                    this.classList.add("error");
+                else
+                this.classList.remove("error");
+            }
+
+            //tipo de música no hace falta comprobación
+
+            function numLocal(){
+                if (this.value < 0 || this.value == "" )
+                    this.classList.add("error");
+                else 
+                    this.classList.remove("error");
+            }
+
+            function obligatorio(e){
+                if (!nombre.value || !artista.value){
+                    e.preventDefault();
+                    let p = document.createElement("p");
+                    p.textContent="Campos obligatorios sin rellenar.";
+                    form.append(p);
+                }
+            }            
         }
 
     </script>
