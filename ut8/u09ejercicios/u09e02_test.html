@@ -5,6 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2.Test</title>
+    <style>
+        img{
+            height: 25px;
+        }
+
+        div{
+            border: solid gray 2px;
+        }
+    </style>
 </head>
 <body>
     <form name="test">
@@ -32,21 +41,64 @@
         <br>
         <br>
         <button type="button" value="enviar">enviar</button>
+        <br>
     </form>
     <script>
         let form = document.forms.test;
         let boton = document.querySelector("button");
         boton.addEventListener("click", enviar);
 
-        let temp = document.form.temp;
-        let trama = document.form.trama;
-        let tema = document.form.tema;
-        let ep = document.form.ep;
-        let like = document.form.like;
+        let temp = form.elements.temp;
+        let trama = form.elements.trama;
+        let tema = form.elements.tema;
+        let ep = form.elements.ep;
+        let like = form.elements.like;
+
+        let aciertos = 0;
+        let img = document.createElement("img");
+        let div = document.createElement("div");
+        let p = document.createElement("p");
+
+        let ps = document.querySelectorAll("p");
 
         function enviar(e){
             let img = document.createElement("img");
-            if (temp == )
+            if (temp.value == 5){
+                aciertos++;
+                img.src = "tic.jpg";
+            } else{
+                img.src = "cruz.jpg";
+            }
+            ps[0].append(img);
+
+            if (trama.value == "f"){
+                aciertos++;
+                img.src = "tic.jpg";
+            } else{
+                img.src = "cruz.jpg";
+            }
+            if (tema.value == "dist"){
+                aciertos++;
+                img.src = "tic.jpg";
+            } else{
+                img.src = "cruz.jpg";
+            }
+            if (ep.value == "blm"){
+                aciertos++;
+                img.src = "tic.jpg";
+            } else{
+                img.src = "cruz.jpg";
+            }
+            if (like.value == "s" || like.value == "c" || like.value == "o"){
+                aciertos++;
+                img.src = "tic.jpg";
+            } else{
+                img.src = "cruz.jpg";
+            }
+
+            p.textContent = `Puntuación: ${aciertos}/5`;
+            div.append(p);
+            form.append(div);
         }
     </script>
 </body>
