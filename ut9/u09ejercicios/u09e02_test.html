@@ -55,14 +55,14 @@
         let like = form.elements.like;
 
         let aciertos = 0;
-        let img = document.createElement("img");
+        let img;
         let div = document.createElement("div");
         let p = document.createElement("p");
 
         let ps = document.querySelectorAll("p");
 
         function enviar(e){
-            let img = document.createElement("img");
+            img = document.createElement("img");
             if (temp.value == 5){
                 aciertos++;
                 img.src = "tic.jpg";
@@ -70,31 +70,38 @@
                 img.src = "cruz.jpg";
             }
             ps[0].append(img);
-
+            img = document.createElement("img");
             if (trama.value == "f"){
                 aciertos++;
                 img.src = "tic.jpg";
             } else{
                 img.src = "cruz.jpg";
             }
+            ps[1].append(img);
+            img = document.createElement("img");
             if (tema.value == "dist"){
                 aciertos++;
                 img.src = "tic.jpg";
             } else{
                 img.src = "cruz.jpg";
             }
+            ps[2].append(img);
+            img = document.createElement("img");
             if (ep.value == "blm"){
                 aciertos++;
                 img.src = "tic.jpg";
             } else{
                 img.src = "cruz.jpg";
             }
+            ps[3].append(img);
+            img = document.createElement("img");
             if (like.value == "s" || like.value == "c" || like.value == "o"){
                 aciertos++;
                 img.src = "tic.jpg";
             } else{
                 img.src = "cruz.jpg";
             }
+            ps[4].append(img);
 
             p.textContent = `Puntuación: ${aciertos}/5`;
             div.append(p);
