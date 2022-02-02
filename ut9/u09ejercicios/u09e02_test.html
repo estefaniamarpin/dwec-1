@@ -54,18 +54,24 @@
         let ep = form.elements.ep;
         let like = form.elements.like;
 
-        let aciertos = 0;
+        let aciertos;
         let img;
         let div = document.createElement("div");
         let p = document.createElement("p");
+        let error = document.createElement("p");
+        error.textContent = "No has respondido a todas las preguntas";
 
         let ps = document.querySelectorAll("p");
 
         function enviar(e){
+            aciertos = 0;
             img = document.createElement("img");
             if (temp.value == 5){
                 aciertos++;
                 img.src = "tic.jpg";
+            } else if(temp.value==""){
+                form.append(error);
+                return;
             } else{
                 img.src = "cruz.jpg";
             }
@@ -74,6 +80,9 @@
             if (trama.value == "f"){
                 aciertos++;
                 img.src = "tic.jpg";
+            } else if(trama.value==""){
+                form.append(error);
+                return;
             } else{
                 img.src = "cruz.jpg";
             }
@@ -82,6 +91,9 @@
             if (tema.value == "dist"){
                 aciertos++;
                 img.src = "tic.jpg";
+            } else if(tema.value==""){
+                form.append(error);
+                return;
             } else{
                 img.src = "cruz.jpg";
             }
@@ -90,6 +102,9 @@
             if (ep.value == "blm"){
                 aciertos++;
                 img.src = "tic.jpg";
+            } else if(ep.value==""){
+                form.append(error);
+                return;
             } else{
                 img.src = "cruz.jpg";
             }
@@ -98,6 +113,9 @@
             if (like.value == "s" || like.value == "c" || like.value == "o"){
                 aciertos++;
                 img.src = "tic.jpg";
+            } else if(like.value==""){
+                form.append(error);
+                return;
             } else{
                 img.src = "cruz.jpg";
             }
