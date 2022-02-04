@@ -1,172 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Discos</title>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.Formulario</title>
     <style>
-      span {
-        color: red;
-      }
-      .error {
-        border: 3px red solid;
-        background: rgb(250, 117, 117);
-      }
+        .error{
+            border: 2px red solid;
+        }
     </style>
-  </head>
-  <body>
-    <form>
-      <ul>
-        <li>
-          <label for="nombreDisco">Nombre del Disco:</label>
-          <input type="text" name="nombreDisco" />
-          <span id="nombreDisco"></span>
-        </li>
-        <li>
-          <label for="compositor">Grupo / Cantante</label>
-          <input type="text" name="compositor" />
-          <span id="compositor"></span>
-        </li>
-        <li>
-          <label for="anno">Año de Publicación:</label>
-          <input type="text" name="anno" />
-          <span id="anno"></span>
-        </li>
-        <li>
-          <label for="genero">Género Musical</label>
-          <input type="text" name="genero" />
-          <span id="genero"></span>
-        </li>
-        <li>
-          <label for="localizacion">Localización</label>
-          <input type="text" name="localizacion" />
-          <span id="localizacion"></span>
-        </li>
-        <li>
-          <label for="prestado">¿Prestado?</label>
-          <input type="checkbox" name="prestado" value="true" />
-        </li>
-      </ul>
-      <input type="submit" name="guardar" value="Guardar" />
-      <span id="boton"></span>
+</head>
+<body>
+    <form id="f">
+        <ul>
+            <li>
+                <label>Nombre del disco: <input type="text" name="nombre"></label>
+            </li>
+            <li>
+                <label>Grupo de música o cantante: <input type="text" name="artista"></label>
+            </li>
+            <li>
+                <label>Año de publicación: <input type="text" name="anno"></label>
+            </li>
+            <li>
+                <label>Tipo de música: 
+                    <select name="tipo">
+                        <option value="rock">rock</option>
+                        <option value="pop">pop</option>
+                        <option value="punk">punk</option>
+                        <option value="indie">indie</option>
+                    </select>
+                </label>
+            </li>
+            <li>
+                <label>Localización: <input type="number" name="local"></label>
+            </li>
+            <li>
+                <label>Prestado:
+                    </br>
+                    <input type="radio" name="prestado" value=true><label>si</label></input>
+                    </br>
+                    <input type="radio" name="prestado" value=false checked><label>no</label></input>
+                </label>
+            </li>
+        </ul>
+        <input type="submit" name="enviar" value="Enviar"></input>
     </form>
+
     <script>
-      //Mejoras de calidad:
-      //Añadir una función que cree errores y borre errores
-      document.addEventListener("DOMContentLoaded", programa);
+        document.addEventListener("DOMContentLoaded", ejecutar);
 
-      function programa() {
-        let formulario = document.forms[0];
+        function ejecutar(){
+            let form = document.forms[0];
+            let nombre = form.elements.nombre;
+            let artista = form.elements.artista;
+            let anno = form.elements.anno;
+            let tipo = form.elements.tipo;
+            let local = form.elements.local;
+            nombre.addEventListener("change", longitud20);
+            artista.addEventListener("change", longitud20);
+            anno.addEventListener("change", anno4);
+            local.addEventListener("change", numLocal);
+            form.addEventListener("submit", obligatorio);
 
-        let nombreDisco = formulario.elements.nombreDisco;
-        nombreDisco.onchange = function (evento) {
-          let ok = campo20(
-            this,
-            "nombreDisco",
-            "Formato del campo 'Nombre del Disco' no válido (+20 caracteres)"
-          );
-          if (!ok) {
-            evento.preventDefault();
-          }
-        };
 
-        let compositor = formulario.elements.compositor;
-        compositor.onchange = function (evento) {
-          let ok = campo20(
-            this,
-            "compositor",
-            "Formato del campo 'Grupo/Cantante' no válido (+20 caracteres)"
-          );
-          if (!ok) {
-            evento.preventDefault();
-          }
-        };
-
-        function campo20(campo, campoError, mensaje) {
-          if (campo.value.length > 20) {
-            mostrarError(campo, campoError, mensaje);
-            return false;
-          } else {
-            ocultarError(campo, campoError);
-            return true;
-          }
-        }
-
-        function mostrarError(campo, campoError, mensaje) {
-          let error = document.getElementById(campoError);
-          error.textContent = mensaje;
-          campo.classList.add("error");
-        }
-
-        function ocultarError(campo, campoError) {
-          let error = document.getElementById(campoError);
-          error.textContent = "";
-          campo.classList.remove("error");
-        }
-
-        let annoPublicacion = formulario.elements.anno;
-        annoPublicacion.onchange = function () {
-          if (!Number(annoPublicacion.value)) {
-            mostrarError(this, "anno", "Introduzca un número válido por favor");
-          } else if (annoPublicacion.value.length != 4) {
-            mostrarError(
-              this,
-              "anno",
-              "Introduzca un año válido, por favor (4 cifras numéricas)"
-            );
-          } else {
-            ocultarError(this, "anno");
-          }
-        };
-
-        let genero = formulario.elements.genero;
-        genero.onchange = function () {
-          let valorGenero = genero.value.toLowerCase();
-          if (
-            valorGenero == "rock" ||
-            valorGenero == "pop" ||
-            valorGenero == "punk" ||
-            valorGenero == "indie"
-          ) {
-            ocultarError(this, "genero");
-          } else {
-            mostrarError(
-              this,
-              "genero",
-              "Género no válido (Valores admitidos: Pop, Rock, Punk, Indie)"
-            );
-          }
-        };
-
-        let localizacion = formulario.elements.localizacion;
-        localizacion.onchange = function () {
-          if (localizacion.value == "" || localizacion.value < 0) {
-            mostrarError(
-              this,
-              "localizacion",
-              "Número de estantería no válido o nulo"
-            );
-          } else {
-            ocultarError(this, "localizacion");
-          }
-        };
-
-        formulario.onsubmit = function (event) {
-          if (!nombreDisco.value || !compositor.value) {
-            event.preventDefault();
-            let errorBoton = document.getElementById("boton");
-            errorBoton.innerHTML =
-              "Los siguientes campos obligatorios están sin rellenar: <br>";
-            if (!nombreDisco.value) {
-              errorBoton.innerHTML += "•Nombre del disco<br>";
+            function longitud20(){
+                if(this.value.length > 20)
+                    this.classList.add("error");
+                else
+                    this.classList.remove("error");
+                
             }
-            if (!compositor.value) {
-              errorBoton.innerHTML += "•Grupo/Cantante<br>";
+
+            function anno4(){
+                if (!Number(this.value))
+                    this.classList.add("error");
+                else if (this.value.length != 4)
+                    this.classList.add("error");
+                else
+                this.classList.remove("error");
             }
-          }
-        };
-      }
+
+            //tipo de música no hace falta comprobación
+
+            function numLocal(){
+                if (this.value < 0 || this.value == "" )
+                    this.classList.add("error");
+                else 
+                    this.classList.remove("error");
+            }
+
+            function obligatorio(e){
+                if (!nombre.value || !artista.value){
+                    e.preventDefault();
+                    let p = document.createElement("p");
+                    p.textContent="Campos obligatorios sin rellenar.";
+                    form.append(p);
+                }
+            }            
+        }
+
     </script>
-  </body>
+</body>
 </html>

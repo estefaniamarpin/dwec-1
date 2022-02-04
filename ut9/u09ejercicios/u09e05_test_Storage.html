@@ -44,20 +44,33 @@
         <label><input name="like" type="radio" value="o">Obviamente</label>
         <br>
         <br>
-        <button type="button" value="enviar">enviar</button>
+        <button type="button" id="enviar" value="enviar">enviar</button>
+        <button type="button" id="reset">Reiniciar</button>
         <br>
+        <p id="contadorFallos"></p>
     </form>
     <script>
+        //En este caso empleamos localStorage ya que se debe guardar incluso cuando se cierra el programa.
+
         let form = document.forms.test;
-        let boton = document.querySelector("button");
+        let boton = document.getElementById("enviar");
+        let bReset = document.getElementById("reset");
         boton.addEventListener("click", contestadas);
         boton.addEventListener("click", enviar);
+        bReset.addEventListener("click", reset);
 
         let temp = form.elements.temp;
         let trama = form.elements.trama;
         let tema = form.elements.tema;
         let ep = form.elements.ep;
         let like = form.elements.like;
+        let contadorFallos = document.getElementById("contadorFallos");
+
+        //---empieza como NaN, si se usa el botón reset antes funciona---
+        if(localStorage.getItem("contadorFallos") == null){
+            localStorage.setItem("contadorFallos", 0);
+        }
+        contadorFallos.textContent = localStorage.contador; 
 
         let aciertos;
         let img;
@@ -115,6 +128,10 @@
                 p.textContent = `Puntuación: ${aciertos}/5`;
                 div.append(p);
                 form.append(div);
+                if(aciertos<5){
+                    localStorage.contador++;
+                    contadorFallos.textContent = localStorage.contador; 
+                }
             } else {
                 alert(error);
             }
@@ -158,6 +175,11 @@
                 contestado = true;
             }
             return contestado;
+        }
+
+        function reset() {
+            localStorage.contador=0;
+            contadorFallos.textContent = localStorage.contador;
         }
     </script>
 </body>
