@@ -1,0 +1,24 @@
+{
+    "series": [{
+            "titulo": "Black Mirror",
+            "plataforma": "Netflix",
+            "director": "varios",
+            "anno": 2011,
+            "terminada": "no"
+        },
+        {
+            "titulo": "Hellsing",
+            "plataforma": "Netflix",
+            "director": "Umanosuke Iida",
+            "anno": 2001,
+            "terminada": "si"
+        },
+        {
+            "titulo": "Expediente X",
+            "plataforma": "FOX",
+            "director": "Chris Carter,",
+            "anno": 1993,
+            "terminada": "si"
+        }
+    ]
+}

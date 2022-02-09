@@ -21,39 +21,21 @@
             botonMostrar.addEventListener("click", mostrarArchivo);
         }
 
-        function mostrarArchivo(evento) {
+        async function mostrarArchivo(evento) {
             let campolocalidad = document.getElementById("localidad");
-            //let url = "arrayLocalidades.php?localidad=" + campolocalidad.value;
-            let base = "http://localhost/UT10-Servicios%20Red/ej3-php%20-%20url";
-            let url = new URL(base + "/arrayLocalidades.php");
-            url.searchParams.set("localidad", campolocalidad.value);
 
-            fetch(url)
-            .then(function (response) {
-                if (response.ok) {
-                return response.text();
-                } else {
-                return "Error " + response.status + " al acceder al servidor";
-                }
-            })
-            .then(function (text) {
-                document.getElementById("contenido").value = text;
-            });
-        }
-
-        formElem.onsubmit = async (e) => {
-            e.preventDefault();
+            let formData = new FormData();
+            formData.append("localidad", campolocalidad.value);
 
             let response = await fetch("arraylocalidades.php", {
-                method: "POST",
-                body: new FormData(formElem)
+            method: "POST",
+            body: formData,
             });
 
             let result = await response.text();
 
-            alert(result);
-        };
-        
+            document.getElementById("contenido").value = result;
+        }
     </script>
 </body>
 </html>
