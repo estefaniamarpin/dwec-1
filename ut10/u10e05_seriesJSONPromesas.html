@@ -4,9 +4,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>SeriesJSONPromesas</title>
 </head>
 <body>
-    
+    <table id="tabla"></table>
+    <script>
+        let tabla = document.getElementById("tabla");
+        let fichero = "./series.json";
+        fetch(fichero)
+        .then(function (response) {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error("Error " + response.status + " al intentar acceder al fichero " + fichero)
+            }
+        })
+        .then(function (json) {
+            let trPrimero = document.createElement("tr");
+            let thTitulo = document.createElement("th");
+            let thPlataforma = document.createElement("th");
+            let thDirector = document.createElement("th");
+            let thAnno = document.createElement("th");
+            let thTerminada = document.createElement("th");
+            // let td = document.createElement("td");
+            thTitulo.textContent = "Título";
+            thPlataforma.textContent = "Plataforma";
+            thDirector.textContent = "Director";
+            thAnno.textContent = "Año";
+            thTerminada.textContent = "Terminada";
+
+            trPrimero.append(thTitulo, thPlataforma, thDirector, thAnno, thTerminada);
+            tabla.append(trPrimero);
+
+        })
+        .catch(function (error) {
+            alert("Se ha producido un error: " + error.msesage);
+        });
+    </script>
 </body>
 </html>
