@@ -19,6 +19,50 @@
         xhr.open('GET', 'portafolio.json');
         xhr.send();
 
+        xhr.onload = function (){
+            if (xhr.status != 200) {
+                    alert(`Error ${xhr.status}: ${xhr.statusText}`);
+            } else {
+                let object = xhr.response
+            
+                let portafolio = object.fechas;
+
+                let titulos = document.createElement("tr");
+
+                let thTitulo = document.createElement("th");
+                thTitulo.textContent = "Título";
+                titulos.append(thTitulo);
+
+                let thFecha = document.createElement("th");
+                thFecha.textContent = "Fecha";
+                titulos.append(thFecha);
+
+                let thTexto = document.createElement("th");
+                thTexto.textContent = "Texto";
+                titulos.append(thTexto);
+                table.append(titulos);
+
+                for (let objeto of portafolio){
+                    let tr = document.createElement("tr");
+
+                    let tdTitulo = document.createElement("td");
+                    tdTitulo.textContent = objeto.titulo;
+                    tr.append(tdTitulo);
+
+                    let tdFecha = document.createElement("td");
+                    tdFecha.textContent = objeto.fecha;
+                    tr.append(tdFecha);
+
+                    let tdTexto = document.createElement("td");
+                    tdTexto.textContent = objeto.texto;
+                    tr.append(tdTexto);
+                    
+                    table.append(tr);
+                }
+                document.body.append(table);
+            };
+        }
+
         fetch("portafolio.json")
             .then(function(response) {
                 return response.json();

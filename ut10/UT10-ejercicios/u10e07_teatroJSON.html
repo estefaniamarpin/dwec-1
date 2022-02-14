@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teatro JSON</title>
+</head>
+<body>
+    <select id="desplegable">
+    </select>
+
+    <button id="pri">Primero</button>
+    <button id="ant">Anterior</button>
+    <button id="sig">Siguiente</button>
+    <button id="ult">Último</button>
+    <script>
+        let select = document.getElementById("desplegable");
+        async function cargarTeatros() {
+            let fichero = "./json_teatro/teatros.json";
+            let respuesta = await fetch(fichero);
+            if (respuesta.ok) {
+                try {
+                    json = await respuesta.json();
+                    let teatros = json;
+                        for (let teatro of teatros){
+                            let option = document.createElement("option");
+                            option.textContent = teatro.teatro;
+                            select.append(option);
+                        }
+                } catch (error) {
+                    alert(error.message);
+                }
+            } else {
+                alert(
+                    "Error " +
+                    respuesta.status +
+                    " al intentar acceder al fichero " +
+                    fichero
+                );
+            }
+        }
+        cargarTeatros();
+        
+        function carteleraTeatro(e){
+
+        }
+
+    </script>
+</body>
+</html>
