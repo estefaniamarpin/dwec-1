@@ -9,6 +9,11 @@
 <body>
     <select id="desplegable">
     </select>
+    <div>Título: <input id="titulo"></input></div>
+    <div>Precio: <input id="precio"></input></div>
+    <div>Sinopsis: <textarea id="sinopsis" cols="40"></textarea></div>
+    <div><img id="imagen" src=""></img></div>
+    
 
     <button id="pri">Primero</button>
     <button id="ant">Anterior</button>
@@ -16,6 +21,13 @@
     <button id="ult">Último</button>
     <script>
         let select = document.getElementById("desplegable");
+        let inputTitulo = document.getElementById("titulo");
+        let inputPrecio = document.getElementById("precio");
+        let textSinopsis = document.getElementById("sinopsis");
+        let img = document.getElementById("imagen");
+
+        select.addEventListener("change", carteleraTeatro);
+
         async function cargarTeatros() {
             let fichero = "./json_teatro/teatros.json";
             let respuesta = await fetch(fichero);
@@ -27,7 +39,9 @@
                             let option = document.createElement("option");
                             option.textContent = teatro.teatro;
                             select.append(option);
+                            
                         }
+                    carteleraTeatro();
                 } catch (error) {
                     alert(error.message);
                 }
@@ -42,9 +56,33 @@
         }
         cargarTeatros();
         
-        function carteleraTeatro(e){
-
+        function carteleraTeatro(){
+            fetch("./json_teatro/cartelera.json")
+                .then(function (response) {
+                    if (response.ok) {
+                    return response.json();
+                    } else {
+                    throw new Error("Error " +
+                        response.status +
+                        " al intentar acceder al fichero " +
+                        fichero)
+                    }
+                })
+                .then(function (json) {
+                    let cartelera = json;
+                    for (let obra of cartelera.obras){
+                        if(obra.teatro == select.value){
+                            inputTitulo.value = obra.titulo;
+                            inputPrecio.value = obra.precio;
+                            textSinopsis.textContent = obra.sinopsis;
+                            textSinopsis.style.height = `${textSinopsis.scrollHeight}px`
+                            img.src = obra.imagen;
+                        }
+                    }
+                })
         }
+
+        
 
     </script>
 </body>
