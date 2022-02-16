@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Juego Parejas</title>
+    <style>
+      table {
+        border: 1px solid black;
+        background-color: coral;
+      }
+      div{
+        width: 80px;
+        height: 20px;
+        border: 1px solid black;
+        text-align: center;
+      }
+      td {
+        width: 200px;
+        height: 400px;
+        border: 2px solid white;
+      }
+      img {
+        width: 200px;
+        height: 400px;
+        visibility: hidden;
+      }
+      .mostrar,
+      .correcta {
+        visibility: visible;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Parejas</h1>
+    <div id="aciertos"></div>
+    <button id="reset">Reiniciar</button>
+    <table id="tabla">
+      <tr>
+        <td><img src="" /></td>
+        <td><img src="" /></td>
+        <td><img src="" /></td>
+        <td><img src="" /></td>
+      </tr>
+      <tr>
+        <td><img src="" /></td>
+        <td><img src="" /></td>
+        <td><img src="" /></td>
+        <td><img src="" /></td>
+      </tr>
+      <tr>
+        <td><img src="" /></td>
+        <td><img src="" /></td>
+        <td><img src="" /></td>
+        <td><img src="" /></td>
+      </tr>
+    </table>
+
+    <script>
+      let imagenes = [
+        "./Simpson/AbrahamSimpson.png",
+        "./Simpson/AbrahamSimpson.png",
+        "./Simpson/BartSimpson.png",
+        "./Simpson/BartSimpson.png",
+        "./Simpson/HomerSimpson.png",
+        "./Simpson/HomerSimpson.png",
+        "./Simpson/LisaSimpson.png",
+        "./Simpson/LisaSimpson.png",
+        "./Simpson/MaggieSimpson.png",
+        "./Simpson/MaggieSimpson.png",
+        "./Simpson/MargeSimpson.png",
+        "./Simpson/MargeSimpson.png",
+      ];
+      let imgs = document.querySelectorAll("img");
+      let tabla = document.getElementById("tabla");
+      let cajaAciertos=document.getElementById("aciertos");
+      let boton=document.getElementById("reset");
+      let mostradas = 0;
+      let aciertos=0;
+
+      tabla.addEventListener("click", jugar);
+      boton.addEventListener("click",iniciar);
+      iniciar();
+
+      function jugar(event) {
+        let target = event.target.closest("td");
+        let carta = target.firstChild;
+        if (
+          !carta.classList.contains("correcta") &&
+          !carta.classList.contains("mostrar")
+        ) {
+          mostradas++;
+          if (mostradas == 2) {
+            comprobar(carta);
+            mostradas = 0;
+          } else {
+            carta.classList.add("mostrar");
+          }
+        }
+      }
+
+      function comprobar(carta) {
+        for (let img of imgs) {
+          if (img.classList.contains("mostrar")) {
+            if (img.src == carta.src) {
+              carta.classList.add("correcta");
+              img.classList.add("correcta");
+              aciertos++;
+              if(aciertos==6){
+                aciertos="GANASTE";
+              }
+              cajaAciertos.textContent=aciertos;
+            }
+            img.classList.remove("mostrar");
+          }
+        }
+      }
+
+      function iniciar() {
+        for (let img of imgs) {
+          if (img.classList.contains("mostrar")) {
+            img.classList.remove("mostrar");
+          }
+          if (img.classList.contains("correcta")) {
+            img.classList.remove("correcta");
+          }
+        }
+        desordenar();
+        aciertos=0;
+        cajaAciertos.textContent=aciertos;
+      }
+
+      function desordenar() {
+        let contador=0;
+        imagenes.sort(() => 0.5 - Math.random());
+        for (let img of imgs) {
+          img.src = imagenes[contador];
+          contador++;
+        }
+      }
+    </script>
+  </body>
+</html>
