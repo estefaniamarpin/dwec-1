@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+          color: black;
+        }
+        span {
+          color: red;
+        }
+        .alerta {
+          background-color: lightcoral;
+          border: 2px solid red;
+        }
+      </style>
+</head>
+<body>
+    <form>
+        <ul>
+          <li>
+            <label for="fechaCreacion">Fecha:</label>
+            <input type="text" name="fechaCreacion" placeholder="dd/mm/aaaa" />
+            <span id="fechaCreacion"></span>
+          </li>
+          <li>
+            <label for="cocinero">Cocinero:</label>
+            <input type="text" name="cocinero" placeholder="XX&1234" />
+            <span id="cocinero"></span>
+          </li>
+          <li>
+            <label for="destinatario">Destinatario:</label>
+            <input type="text" name="destinatario" placeholder="XX_ciudad:1234" />
+            <span id="destinatario"></span>
+          </li>
+          <li>
+            <label for="gramos">Gramos:</label>
+            <input type="text" name="gramos" placeholder="Min: 100, Máx: 5000" />
+            <span id="gramos"></span>
+          </li>
+          <li>
+            <label for="composicion">Composicion:</label>
+            <input type="text" name="composicion" placeholder="200gC3OH7" />
+            <span id="composicion"></span>
+          </li>
+          <li>
+            <label for="numCuenta">Número de cuenta</label>
+            <input type="text" name="numCuenta" />
+            <span id="numCuenta"></span>
+            <input type="text" name="cuentaCorrecta" placeholder=""readonly />
+          </li>
+        </ul>
+        <input type="submit" name="guardar" value="Guardar Registro" />
+      </form>
+
+      <script>
+        document.addEventListener("DOMContentLoaded",cargar);
+        
+        function cargar(){
+          let form=document.forms[0];
+          form.onsubmit=function(event){
+            //fechaCreacion
+            let fechaCreacion=form.fechaCreacion;
+            let valorFecha=fechaCreacion.value;
+            if(fechaCreacion){
+              //Expresion regular para validar la fecha de creacion
+              let validarFecha=/^([0-2][0-9]|3[0-1])\/(0[0-9]|1[0-2])\/(19[0-9]{2}|20[0-1][0-9]|202[0-2])$/;
+              //funcion para validar un dato
+              validar(fechaCreacion,"fechaCreacion",validarFecha,valorFecha,"Fecha no valida");
+            }
+            else{
+              mensaje(fechaCreacion,"add","fechaCreacion","Introduzca una fecha");
+            }
+            //cocinero
+            let cocinero=form.cocinero;
+            let valorCocinero=cocinero.value;
+            if(valorCocinero){
+              let validarCocinero=/^[A-Z]{2}\W[0-9]{4}$/;
+              validar(cocinero,"cocinero",validarCocinero,valorCocinero,"Formato de cocinero inválido");
+            }
+
+            //destinatario
+            let destinatario=form.destinatario;
+            let valorDestinatario=destinatario.value;
+            if(valorDestinatario){
+              let validarDestinatario=/^[A-Z]{2,3}_[a-z]{1,}:[0-9]{4}$/;
+              validar(destinatario,"destinatario",validarDestinatario,valorDestinatario,"Formato de destinatario inválido");
+            }
+            //gramos
+            let gramos=form.gramos;
+            let valorGramos=gramos.value;
+            if(valorGramos){
+              let validarGramos=/^[1-9][0-9]{2}$|^[1-4][0-9]{3}$|^[5][0]{3}$/;
+              validar(gramos,"gramos",validarGramos,valorGramos,"Formato de gramos inválido");
+            }
+            //composicion
+            let composicion=form.composicion;
+            let valorComposicion=composicion.value;
+            if(valorComposicion){
+              let validarComposicion=/^[1-9][0-9]{0,}[g]([A-Z]{1,2}[1-9]{0,1}){2}$/;
+              validar(composicion,"composicion",validarComposicion,valorComposicion,"Formato de composicion inválido");
+            }
+            //numCuenta
+            let numCuenta=form.numCuenta;
+            let valorNumCuenta=numCuenta.value;
+            if(valorNumCuenta){
+            if(validarCuenta(valorNumCuenta)){
+              mensaje(numCuenta,"rmv","numCuenta","");   
+            }
+            else{
+            mensaje(numCuenta,"add","numCuenta","Numero de cuenta no valido");
+              }
+            }
+            
+            
+            function validarCuenta(numCuenta){
+              //Creacion de variables
+              //Expresion regular para comprobar que el formato del numero de cuenta es correcto.
+              let validador=/^[A-Z]{2}[0-9]{2}-[0-9]{12}-[0-9]{2}$/;
+              //Array donde se encuentra el numero de cuenta divido en 3, separado por guiones 
+              //Ejemplo:[0]AA11 [1]123456789012 [2]11
+              let arrDivisor=numCuenta.split("-");
+              //variables para calcular cosas
+              let totalMitad1=0;
+              let totalMitad2=0;
+              let validarCorrecto=true;
+              //Comprueba si es formato de la cuenta es correcto.
+              if(validador.test(numCuenta)){
+                //divide de la primera parte de arrDivisor (AA11), en 2, letras y numeros.
+                let letras=arrDivisor[0].slice(0,arrDivisor[0].length/2).split("");
+                let digitos=arrDivisor[0].slice(arrDivisor[0].length/2,arrDivisor[0].length).split("");
+                //convierte las letras a numeros mediante su valor en ascii
+                let valorLetras=[];
+                letras.forEach(element => {
+                  valorLetras.push(element.toLowerCase().charCodeAt()-96); 
+                })
+                //suma las 2 partes por separado para saber el valor de las letras y los numeros, se comprueba mas adelante si coinciden.
+                let sumaDigitos=0;
+                let sumaLetras=0;
+                for(let i=0;i<2;i++){
+                  sumaDigitos+=Number(digitos[i]);
+                  sumaLetras+=valorLetras[i];
+                }
+                //Divide la segunda parte del array(123456789012) por la mitad(6digitos)(123456)(789012)
+                let digitos1=arrDivisor[1].slice(0,arrDivisor[1].length/2).split("");
+                let digitos2=arrDivisor[1].slice(arrDivisor[1].length/2,arrDivisor[1].length).split("");
+                //Calcula el valor total de cada parte, hace calculo entre 6 y redondea luego
+                digitos1.forEach(element => {
+                  totalMitad1+=Number(element);
+                });
+                digitos2.forEach(element => {
+                  totalMitad2+=Number(element);
+                });
+                totalMitad1=Math.floor(totalMitad1/6);
+                totalMitad2=Math.floor(totalMitad2/6);
+                //Divide la ultima parte del array(11) 1 1
+                let control1=Number(arrDivisor[2].slice(0,arrDivisor[2].length/2));
+                let control2=Number(arrDivisor[2].slice(arrDivisor[2].length/2,arrDivisor[2].length));
+                //Hace las comprobaciones necesarias.
+                //Si el digito correspondiente de la tercera parte es igual a la suma/6 de la mitad de la segunda
+                //Si el valor de los numeros y letras de la parte 1 es igual. 
+                if(control1!=totalMitad1||control2!=totalMitad2||sumaLetras!=sumaDigitos){
+                  validarCorrecto=false;
+                }
+                else{
+                  //Solo se pone si hay otro dato erroneo, idk
+                  form.cuentaCorrecta.placeholder=arrDivisor.join("");
+                }
+              }
+              else{
+                validarCorrecto=false;
+              }
+              return validarCorrecto;
+              }
+              
+            //Parametros: lugar clase=> Usado en funcion mensaje.Tiene la parte del formulario para cambiar la clase para ponerlo rojo o quitarlo.
+            //            lugarTexto=> Usando en funcion mensaje.Sirve para seleccionar el span donde añadir/quitar el mensaje de error.
+            //            regla=> Expresion regular a la que comparar el texto introducido.
+            //            valor=> Input que hay que validar.
+            //            msg=>Mensaje de error correspondiente.
+            //Ejemplo:
+            //validar(fechaCreacion,"fechaCreacion",validarFecha,valorFecha,"Fecha no valida");
+            function validar(lugarClase,lugarTexto,regla,valor,msg){
+              if(regla.test(valor)){
+                mensaje(lugarClase,"rmv",lugarTexto,"");
+              }
+              else{
+                mensaje(lugarClase,"add",lugarTexto,msg);
+              }
+            }
+            //Parametros: lugarClase=>Parte del formulario a la que se aplica CSS
+            //            correcto=>Valor que define si poner o quitar clase CSS.
+            //            lugarTexto=>Valor para seleccionar el span donde añadir/quitar el mensaje de error.
+            //            msg=>Mensaje de error. "" en caso de que no haya error.
+            // mensaje(fechaCreacion,"add","fechaCreacion","Introduzca una fecha");
+            function mensaje(lugarClase,correcto,lugarTexto,msg){
+              let elemento=document.getElementById(lugarTexto);
+              elemento.textContent=msg;
+              if(correcto=="add"){
+                event.preventDefault();
+                lugarClase.classList.add("alerta");
+              }
+              if(correcto=="rmv"){
+                lugarClase.classList.remove("alerta");
+              }
+            }
+        }
+        }
+
+      </script>
+</body>
+</html>
