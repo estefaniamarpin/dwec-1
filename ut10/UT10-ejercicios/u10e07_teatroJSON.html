@@ -12,13 +12,14 @@
     <div>Título: <input id="titulo"></input></div>
     <div>Precio: <input id="precio"></input></div>
     <div>Sinopsis: <textarea id="sinopsis" cols="40"></textarea></div>
-    <div><img id="imagen" src=""></img></div>
-    
-
+    <br>
     <button id="pri">Primero</button>
     <button id="ant">Anterior</button>
     <button id="sig">Siguiente</button>
     <button id="ult">Último</button>
+    <div><img id="imagen" src=""></img></div>
+    
+
     <script>
         let select = document.getElementById("desplegable");
         let inputTitulo = document.getElementById("titulo");
@@ -39,7 +40,6 @@
                             let option = document.createElement("option");
                             option.textContent = teatro.teatro;
                             select.append(option);
-                            
                         }
                     carteleraTeatro();
                 } catch (error) {
