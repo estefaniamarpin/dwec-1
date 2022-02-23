@@ -1,0 +1,1 @@
+Se ejecutan los 2 handlers porque el remove no borra el primero ya que es anonimo

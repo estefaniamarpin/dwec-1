@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3 Expresiones regulares</title>
+    <style>
+        .red{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h3>Discos</h3>
+    <form id="formulario">
+        <label>Fecha de creación: <input name="fecha" type="text" id="fecha" required/> <label class="red">*Obligatorio</label></label></br>
+        <label>Cocinero: <input name="cocinero" type="text" id="cocinero"/></label></br>
+        <label>Destinatario: <input name="destinatario" type="text" id="destinatario"/></label></br>
+        <label>Gramos: <input name="gramos" type="text" id="gramos"/></label></br>
+        <label>Composición: <input name="comp" type="text" id="comp"/></label></br>
+        <label>Nº de cuenta: <input name="cuenta" type="text" id="cuenta"/></label></br>
+    </form>
+    <button id="boton">Enviar</button>
+    <script>
+
+        let boton=document.getElementById("boton");
+        let fecha=document.getElementById("fecha");
+        let cocinero=document.getElementById("cocinero");
+        let destinatario=document.getElementById("destinatario");
+        let gramos=document.getElementById("gramos");
+        let comp=document.getElementById("comp");
+        let cuenta=document.getElementById("cuenta");
+        let regexp;
+ 
+        boton.addEventListener("click",validar);
+
+        function validar() {
+            if(!comprobarFecha()){
+                alert("Fecha incorrecta o invalida");
+                return;
+            }
+        }
+
+        function comprobarFecha() {
+            regexp=/^\d\d\/\d\d\/\d\d\d\d$/;
+                if(!regexp.test(fecha.value)){
+                    return false;
+                }else{
+                    return true;
+                }
+        }
+
+        function comprobarCoci() {
+            regexp=/^[A-Z]{2}\W[0-9]{4}$/;
+                if(!regexp.test(cocinero.value)){
+                    return false;
+                }else{
+                    return true;
+                }
+        }
+
+        function comprobarDesti() {
+            regexp=/^[A-Z]{2,3}_albuquerque:[0-9]{4}$/;
+                if(!regexp.test(destinatario.value)){
+                    return false;
+                }else{
+                    return true;
+                }
+        }
+
+        function comprobarGramos() {
+            regexp=/^[1-5][0-9]{3}|[0-9]{3}$/;
+                if(!regexp.test(gramos.value)){
+                    return false;
+                }else{
+                    return true;
+                }
+        }
+
+        function comprobarComp() {
+            regexp=/^[0-9]{2,4}g[A-Z]{1,2}[0-9]?[A-Z]{1,2}[0-9]?$/;
+                if(!regexp.test(comp.value)){
+                    return false;
+                }else{
+                    return true;
+                }
+        }
+
+        function comprobarCuenta() {
+            //Sin terminar
+        }
+    </script>
+</body>
+</html>

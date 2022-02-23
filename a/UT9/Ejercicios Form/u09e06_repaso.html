@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reservas salas</title>
+  </head>
+  <body>
+    <h2>Formulario reserva sala</h2>
+    <form id="form">
+      <label>
+        Nombre:
+        <input type="text" name="nombre" required />
+      </label>
+      <br /><br />
+      <label
+        >Apellidos:
+        <input type="text" name="apellido" required />
+      </label>
+      <br /><br />
+      <label
+        >DNI:
+        <input type="text" name="dni" required />
+      </label>
+      <br /><br />
+      <label
+        >Numero personas:
+        <input type="text" name="personas" required />
+      </label>
+      <br /><br />
+      <label
+        >Sala con cocina: <input type="radio" name="cocina" value="si" required />Si
+        <input type="radio" name="cocina" value="no" required />No
+      </label>
+      <br /><br />
+      <label
+        >Nº Socio:
+        <input type="text" name="socio" />
+      </label>
+      <br />
+      <div id="botones">
+        <button id="reservar" type="button">Reservar</button>
+        <button id="anular" type="button">Anular</button>
+        <button id="mostrar" type="button">Mostrar</button>
+        <button id="salir" type="button">Salir</button>
+      </div>
+    </form>
+
+    <div id="datos"></div>
+
+    <script>
+      let form = document.forms.form;
+      let botones = document.getElementById("botones");
+      botones.addEventListener("click", gestion);
+      let reservas = [];
+      let datos = document.getElementById("datos");
+      let reservaCocina=0;
+      let reservaSin=0;
+
+      function gestion(evento) {
+        let target = evento.target;
+        switch (target.id) {
+          case "reservar":
+            reservar();
+            break;
+
+          case "anular":
+            anular();
+            break;
+
+          case "mostrar":
+            mostrar();
+            break;
+
+          case "salir":
+            document.body.innerHTML = "Aplicacion cerrada";
+            break;
+        }
+      }
+
+      function reservar() {
+        if (comprobar()) {
+          let reserva = {
+            Nombre: form.elements.nombre.value,
+            Apellido: form.elements.apellido.value,
+            DNI: form.elements.dni.value,
+            Personas: form.elements.personas.value,
+            Cocina: form.elements.cocina.value,
+            nSocio: form.elements.socio.value,
+          };
+          if (reserva.Cocina == "si") {
+            reservaCocina++;
+            reserva.Precio = 150;
+          } else {
+            reservaSin++;
+            reserva.Precio = 100;
+          }
+          if (reserva.nSocio != "") {
+            reserva.Precio *= 0.9;
+          }
+          reservas.push(reserva);
+        }
+        form.reset();
+      }
+
+      function anular() {
+        let borrar = prompt("Introduce el dni");
+        let respuesta = false;
+        for (let reserva of reservas) {
+          if (reserva.DNI == borrar) {
+            if(reserva.Cocina=="si"){
+              reservaCocina--;
+            }else{
+              reservaSin--;
+            }
+            reservas.splice(reservas.indexOf(reserva), 1);
+            respuesta = true;
+          }
+        }
+        if (respuesta) {
+          alert(`Reserva a con DNI ${borrar} borrada con exito`);
+        } else {
+          alert(`No hay reservas con DNI ${borrar}`);
+        }
+      }
+
+      function mostrar() {
+        datos.innerHTML = "";
+        for (let reserva of reservas) {
+          let p = document.createElement("p");
+          for (let key in reserva) {
+            p.append(key + "=" + reserva[key]);
+            p.append(document.createElement("br"));
+          }
+          p.append("==================");
+          datos.append(p);
+        }
+      }
+
+      function comprobar() {
+        if (comprobarDni() && comprobarPersonas()&&comprobarEspacio()&&comprobarSocio()) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+      function comprobarDni() {
+        let dniActual = form.elements.dni.value;
+        let regexp = /^[0-9]{8}[A-Z]$/;
+        if (!regexp.test(dniActual)) {
+          alert("DNI no valido");
+          return false;
+        } else {
+          for (let reserva of reservas) {
+            if (reserva.DNI == dniActual) {
+              alert("Ya hay una reserva con este DNI");
+              return false;
+            }
+          }
+          return true;
+        }
+      }
+
+      function comprobarPersonas() {
+        let personasActual = form.elements.personas.value;
+        let regexp = /^[0-9]{1,2}$/;
+        if (!regexp.test(personasActual) || personasActual > 25) {
+          alert("Numero no valido. Maximo 2 digitos");
+          return false;
+        } else {
+          return true;
+        }
+      }
+
+      function comprobarEspacio() {
+        let cocinaActual = form.elements.cocina.value;
+        switch (cocinaActual) {
+          case "si":
+            if(reservaCocina>4){
+              alert("No quedan salas con cocina disponibles");
+              return false;
+            }else{
+              return true;
+            }
+        
+            case "no":
+            if(reservaSin>3){
+              alert("No quedan salas sin cocina disponibles");
+              return false;
+            }else{
+              return true;
+            }
+        }
+      }
+
+      function comprobarSocio() {
+        let socioActual = form.elements.socio.value;
+        let regexp = /^[A-Z]{2}[0-9]{3}$/;
+        if (!regexp.test(socioActual)&&socioActual!="") {
+          alert("Numero de socio no valido");
+          return false;
+        } else {
+          return true;
+        }
+      }
+    </script>
+  </body>
+</html>

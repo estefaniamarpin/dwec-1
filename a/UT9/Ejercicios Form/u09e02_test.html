@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2 Test</title>
+    <style>
+        img{
+            width: 50px;
+            height: 50px;
+        }
+        .red{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h3>Test de Vincenzo</h3>
+    <form name="test">
+        <label id="lTrabajo">¿Aparte de consigliere de la mafia, que otra profesión tiene Vincenzo?<img id="tr"/></br>
+            <input name="trabajo" type="radio" value="poli"/>Policia</br>
+            <input name="trabajo" type="radio" value="abogado"/>Abogado</br>
+            <input name="trabajo" type="radio" value="espia"/>Espia</br>
+        </label></br>
+
+        <label id="lAmigo">¿Quien es el amigo mas leal que tiene Vincenzo en Italia?<img id="am"/></br>
+            <input name="amigo" type="radio" value="luca"/>Luca</br>
+            <input name="amigo" type="radio" value="paolo"/>Paolo</br>
+            <input name="amigo" type="radio" value="toto"/>Toto</br>
+        </label></br>
+
+        <label id="lRestaurante">¿Como se llama el restaurante italiano del Geumga Plaza?<img id="re"/></br>
+            <input name="restaurante" type="radio" value="roma"/>Roma</br>
+            <input name="restaurante" type="radio" value="toscana"/>Toscana</br>
+            <input name="restaurante" type="radio" value="arno"/>Arno</br>
+        </label></br>
+
+        <label id="lNombre">¿Cual es el nombre de nacimiento de Vincenzo?<img id="no"/></br>
+            <input name="nombre" type="radio" value="hs"/>Jang Han-seok</br>
+            <input name="nombre" type="radio" value="jh"/>Park Joo-hyung</br>
+            <input name="nombre" type="radio" value="sh"/>Han Seung-hyuk</br>
+        </label></br>
+
+        <label id="lBufete">¿Como se llama el anterior bufete de abogados donde trabajaba la co-protagonista Hong Cha-young?<img id="bu"/></br>
+            <input name="bufete" type="radio" value="woosang"/>Woosang Firm</br>
+            <input name="bufete" type="radio" value="jipuragi"/>Jipuragi Law Firm</br>
+            <input name="bufete" type="radio" value="babel"/>Babel Law Group</br>
+        </label></br>
+    </form>
+    <button id="comprobar">Comprobar</button>
+    <script>
+        let trabajo;
+        let amigo;
+        let restaurante;
+        let nombre;
+        let bufete;
+        let boton=document.getElementById("comprobar");
+        let aciertos=0;
+
+        boton.addEventListener("click",respuestas);
+
+        function respuestas() {
+            trabajo=document.querySelector('input[name="trabajo"]:checked');
+            amigo=document.querySelector('input[name="amigo"]:checked');
+            restaurante=document.querySelector('input[name="restaurante"]:checked');
+            nombre=document.querySelector('input[name="nombre"]:checked');
+            bufete=document.querySelector('input[name="bufete"]:checked');
+            
+            if(comprobar()){
+                let espacioTr=document.getElementById("tr");
+                let espacioAm=document.getElementById("am");
+                let espacioRe=document.getElementById("re");
+                let espacioNo=document.getElementById("no");
+                let espacioBu=document.getElementById("bu");
+
+                if(trabajo.value=="abogado"){
+                    aciertos++;
+                    espacioTr.src="imagenes/check.png";
+                }else{
+                    espacioTr.src="imagenes/wrong.png";
+                }
+
+                if(amigo.value=="luca"){
+                    aciertos++;
+                    espacioAm.src="imagenes/check.png";
+                }else{
+                    espacioAm.src="imagenes/wrong.png";
+                }
+
+                if(restaurante.value=="arno"){
+                    aciertos++;
+                    espacioRe.src="imagenes/check.png";
+                }else{
+                    espacioRe.src="imagenes/wrong.png";
+                }
+
+                if(nombre.value=="jh"){
+                    aciertos++;
+                    espacioNo.src="imagenes/check.png";
+                }else{
+                    espacioNo.src="imagenes/wrong.png";
+                }
+
+                if(bufete.value=="woosang"){
+                    aciertos++;
+                    espacioBu.src="imagenes/check.png";
+                }else{
+                    espacioBu.src="imagenes/wrong.png";
+                }
+
+                alert(`Tienes ${aciertos} aciertos`);
+                aciertos=0;
+            }else{
+                alert("No has respondido a todas las preguntas");
+            }       
+        }
+
+        function comprobar() {
+            let contestadas=true;
+
+            if(trabajo==null){
+                lTrabajo.classList.add("red");
+                contestadas=false;
+            }else{
+                lTrabajo.classList.remove("red");
+            }
+
+            if(amigo==null){
+                lAmigo.classList.add("red");
+                contestadas=false;
+            }else{
+                lAmigo.classList.remove("red");
+            }
+
+            if(restaurante==null){
+                lRestaurante.classList.add("red");
+                contestadas=false;
+            }else{
+                lRestaurante.classList.remove("red");
+            }
+
+            if(nombre==null){
+                lNombre.classList.add("red");
+                contestadas=false;
+            }else{
+                lNombre.classList.remove("red");
+            }
+
+            if(bufete==null){
+                lBufete.classList.add("red");
+                contestadas=false;
+            }else{
+                lBufete.classList.remove("red");
+            }
+            return contestadas;
+        }
+    </script>
+</body>
+</html>

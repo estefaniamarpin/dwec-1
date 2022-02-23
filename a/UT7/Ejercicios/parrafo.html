@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unidad 5 - Ejercicio 5</title>
+  </head>
+
+  <body>
+    <form id="formu" action="#">
+      <textarea cols="20" rows="8" id="area"></textarea>
+      <input type="button" id="crear" value="Crear Parrafo" />
+    </form>
+    <div id="parrafos"></div>
+    <script>
+      let formu = document.getElementById("formu");
+      let parrafos = document.getElementById("parrafos");
+      let area = document.getElementById("area");
+
+      formu.addEventListener("click", añadir);
+
+      function añadir(event) {
+        let target = event.target;
+        if (target.id == "crear") {
+          if (area.value != "") {
+            let p = document.createElement("p");
+            p.textContent = area.value;
+            parrafos.append(p);
+            area.value = "";
+          } else {
+            alert("Area vacia");
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

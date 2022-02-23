@@ -1,0 +1,19 @@
+.negrita{
+    font-weight: bold;
+  }
+  .cursiva{
+    font-style: italic;
+  }
+  .rojo{
+    color: red;
+  }
+  .amarillo{
+    color: yellow;
+  }
+  .verde{
+    color: lightgreen;
+  }
+  img{
+    width: 1em;
+    height: 1em;
+  }

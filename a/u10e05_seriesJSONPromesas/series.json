@@ -1,0 +1,39 @@
+{
+  "serie": [
+    {
+      "titulo": "Squid Game",
+      "plataforma": "Netflix",
+      "director": "Hwang Dong-hyuk",
+      "año": 2021,
+      "terminada": "si"
+    },
+    {
+      "titulo": "Vincenzo",
+      "plataforma": "Netflix",
+      "director": "Kim Hee-won",
+      "año": 2021,
+      "terminada": "si"
+    },
+    {
+      "titulo": "Westworld",
+      "plataforma": "HBO",
+      "director": "Jonathan Nolan, Lisa Joy, Carly Wray, Charles Yu",
+      "año": 2016,
+      "terminada": "no"
+    },
+    {
+      "titulo": "Dr Who",
+      "plataforma": "BBC",
+      "director": "Russell T Davies, Chris Chibnall, Steven Moffat",
+      "año": 1963,
+      "terminada": "no"
+    },
+    {
+        "titulo": "La que se avecina",
+        "plataforma": "Telecinco",
+        "director": "Laura Caballero; Miguel Albaladejo y Roberto Monge",
+        "año": 2007,
+        "terminada": "si"
+      }
+  ]
+}

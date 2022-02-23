@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Animales</title>
+  </head>
+  <body>
+    <button id="crear">Generar personaje</button>
+    <button id="borrar">Borrar personaje</button>
+    <button id="nperros">Nº perros</button>
+    <button id="ngatos">Nº gatos</button>
+    <button id="nhurones">Nº hurones</button>
+
+    <div id="imagenes"></div>
+
+    <script>
+      let imagenes = document.getElementById("imagenes");
+      document.body.addEventListener("click", gestion);
+      function gestion(event) {
+        let target = event.target;
+        switch (target.id) {
+          case "crear":
+            crear();
+            break;
+
+          case "borrar":
+            borrar();
+            break;
+
+          case "nperros":
+            contar("perro");
+            break;
+
+          case "ngatos":
+            contar("gato");
+            break;
+
+          case "nhurones":
+            contar("huron");
+            break;
+
+          default:
+            break;
+        }
+      }
+
+      function crear() {
+        let opcion = +prompt("Elige animal: 1. Perro, 2. Gato, 3. Hurón");
+        let imagen = document.createElement("img");
+        switch (opcion) {
+          case 1:
+            imagen.src = "imgAnimales/perro.jpg";
+            imagenes.append(imagen);
+            break;
+          case 2:
+            imagen.src = "imgAnimales/gato.jpg";
+            imagenes.append(imagen);
+            break;
+          case 3:
+            imagen.src = "imgAnimales/huron.jpg";
+            imagenes.append(imagen);
+            break;
+
+          default:
+            break;
+        }
+      }
+
+      function borrar() {
+        let imgs = document.querySelectorAll("img");
+        let eliminar = imgs[imgs.length - 1];
+        eliminar.remove();
+      }
+
+      function contar(animal) {
+        let contador = 0;
+        let imgs = document.querySelectorAll("img");
+        switch (animal) {
+          case "perro":
+            for (let img of imgs) {
+              if (img.getAttribute("src") == "imgAnimales/perro.jpg") {
+                contador++;
+              }
+            }
+            alert(`Hay ${contador} perros`);
+            break;
+
+          case "gato":
+            for (let img of imgs) {
+              if (img.getAttribute("src") == "imgAnimales/gato.jpg") {
+                contador++;
+              }
+            }
+            alert(`Hay ${contador} gatos`);
+            break;
+
+          case "huron":
+            for (let img of imgs) {
+              if (img.getAttribute("src") == "imgAnimales/huron.jpg") {
+                contador++;
+              }
+            }
+            alert(`Hay ${contador} hurones`);
+            break;
+
+          default:
+            break;
+        }
+      }
+    </script>
+  </body>
+</html>

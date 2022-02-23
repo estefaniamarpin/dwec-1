@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UT04 - Ejercicio 5 - Eventos teclado y ratón</title>
+
+    <style>
+      body {
+        font-family: arial, helvetica;
+      }
+
+      .box {
+        width: 160px;
+        height: 160px;
+        border: thin solid silver;
+        padding: 0.5em;
+        float: left;
+        margin-right: 15px;
+      }
+
+      .box h1 {
+        margin: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="raton" class="box">
+      <h1>Ratón</h1>
+      <div id="datosRaton"></div>
+    </div>
+    <div id="teclado" class="box">
+      <h1>Teclado</h1>
+      <div id="datosTeclado"></div>
+    </div>
+
+    <script>
+      let cajaRaton= document.getElementById("raton");
+      let cajaTeclado= document.getElementById("teclado");
+      let raton = document.getElementById("datosRaton");
+      let tecla = document.getElementById("datosTeclado");
+      document.documentElement.addEventListener("mousemove", posicion);
+      document.documentElement.addEventListener("keydown", teclado);
+      document.documentElement.addEventListener("click", colorRaton);
+
+      function posicion(event) {
+        let xNav = event.clientX;
+        let yNav = event.clientY;
+        let xPan = event.screenX;
+        let yPan = event.screenY;
+        raton.textContent = `Navegador: ${xNav}:${yNav} Pantalla: ${xPan}:${yPan}`;
+        cajaTeclado.style.backgroundColor="white";
+        cajaRaton.style.backgroundColor="white";
+      }
+
+      function teclado(event) {
+        let letra = event.key;
+        let codigo = event.code;
+        tecla.textContent = `Carácter = [${letra}] Código = [${codigo}]`;
+        cajaTeclado.style.backgroundColor="#CCE6FF";
+      }
+
+      function colorRaton(event) {
+        cajaRaton.style.backgroundColor="#FFFFCC";
+      }
+    </script>
+  </body>
+</html>

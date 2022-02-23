@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Añadir option</title>
+  </head>
+  <body>
+    <select id="genres">
+      <option value="rock">Rock</option>
+      <option value="blues" selected>Blues</option>
+    </select>
+
+    <script>
+        let genres=document.getElementById("genres");
+        alert(genres.value);
+        alert(genres.options[genres.selectedIndex].text);
+
+        let option=new Option("Classic","classic");
+        genres.append(option);
+
+        genres.value="classic";
+
+    </script>
+  </body>
+</html>

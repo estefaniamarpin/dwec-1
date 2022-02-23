@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unidad 5 - Ejercicio 4</title>
+  </head>
+
+  <body>
+    <form id="formu" action="#">
+      <select id="ccaa">
+        <option value="0" selected="selected">Seleccione...</option>
+        <option value="1">Castilla y León</option>
+        <option value="2">Comunidad Madrid</option>
+        <option value="3">Galicia</option>
+        <option value="4">País Vasco</option>
+      </select>
+      <select id="provincia">
+        <option value="-">-</option>
+      </select>
+    </form>
+    <script>
+      let formu = document.getElementById("formu");
+      let provincia = document.getElementById("provincia");
+      formu.addEventListener("change", selecionar);
+
+      function selecionar(event) {
+        let target = event.target;
+        if (target.id == "ccaa") {
+          let comunidad = target.value;
+          let provincias;
+          let html;
+          switch (comunidad) {
+            case "1":
+              provincias = ["León","Zamora","Salamanca","Palencia","Valladolid","Ávila","Burgos","Segovia","Soria"];
+              for (let prov of provincias) {
+                html += `<option>${prov}</option>`;
+              }
+              provincia.innerHTML = html;
+              break;
+
+            case "2":
+              provincia.innerHTML = "<option>Madrid</option>";
+              break;
+
+            case "3":
+              provincias = ["A Coruña","Pontevedra","Lugo","Ourense"];
+              for (let prov of provincias) {
+                html += `<option>${prov}</option>`;
+              }
+              provincia.innerHTML = html;
+              break;
+
+            case "4":
+              provincias = ["Vizcaya","Alava","Guipúzcoa"];
+              for (let prov of provincias) {
+                html += `<option>${prov}</option>`;
+              }
+              provincia.innerHTML = html;
+              break;
+
+            default:
+              break;
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1 Formulario</title>
+    <style>
+        .red{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h3>Discos</h3>
+    <form id="formulario">
+        <label id="nDisco">Nombre del disco: <input name="disco" type="text" id="disco"/> <label class="red">*Obligatorio</label></label></br>
+        <label id="nArtis">Artista: <input name="artista" type="text" id="artista"/> <label class="red">*Obligatorio</label></label></br>
+        <label id="nYear">Año de publicación: <input name="year" type="text" id="year"/></label></br>
+        <label>Tipo de musica: 
+            <select name="tipo" id="tipo">
+                <option value="pop" selected>Pop</option>
+                <option value="rock">Rock</option>
+                <option value="punk">Punk</option>
+                <option value="indie">Indie</option>
+            </select>
+        </label></br>
+        <label id="nLoc">Localizacion: <input name="loc" type="text" id="loc"/></label></br>
+        <label>Prestado: 
+            <input name="prestado" type="radio" value=true/>Si
+            <input name="prestado" type="radio" value=false checked/>No
+        </label></br>
+        <input name="enviar" type="submit" value="Enviar" id="boton"/>
+    </form>
+    <script>
+        document.addEventListener("DOMContentLoaded", codigo);
+
+        function codigo() {
+
+            let formulario=document.getElementById("formulario");
+            let boton=document.getElementById("boton");
+            let disco=document.getElementById("disco");
+            let artista=document.getElementById("artista");
+            let nDisco=document.getElementById("nDisco");
+            let nArtis=document.getElementById("nArtis");
+            let nYear=document.getElementById("nYear");
+            let nLoc=document.getElementById("nLoc");
+            let regexp;
+
+        
+            formulario.addEventListener("change",validar);
+            boton.addEventListener("click",enviar);
+
+            function validar(event) {
+                let target=event.target;
+                switch (target.id) {
+                    case "disco":
+                        if(!campo20(target.value)){
+                            alert("Error. Minimo 1 caracter, maximo 20 caracteres");
+                            nDisco.classList.add("red");
+                            disco.classList.add("red");
+                        }else{
+                            nDisco.classList.remove("red");
+                            disco.classList.remove("red");
+                        }
+                        break;
+                    case "artista":
+                        if(!campo20(target.value)){
+                            alert("Error. Minimo 1 caracter, maximo 20 caracteres");
+                            nArtis.classList.add("red");
+                            artista.classList.add("red");
+                        }else{
+                            nArtis.classList.remove("red");
+                            artista.classList.remove("red");
+                        }
+                        break;
+
+                    case "year":
+                        year4(target.value);
+                        break;
+
+                    case "loc":
+                        locNum(target.value);
+                        break;
+                
+                    default:
+                        break;
+                }
+            }
+
+            function campo20(valor) {
+                regexp=/^.{1,20}$/;
+                if(!regexp.test(valor)){
+                    return false;
+                }else{
+                    return true;
+                }
+
+            }
+
+            function year4(valor){
+                regexp=/^\d{4}$/;
+                if(!regexp.test(valor)){
+                    alert("Error.Año 4 cifras");
+                    nYear.classList.add("red");
+                }else{
+                    nYear.classList.remove("red");
+                }
+            }
+
+            function locNum(valor) {
+                regexp=/^\d*$/;
+                if(!regexp.test(valor)){
+                    alert("Error. Localización vacio o numérica");
+                    nLoc.classList.add("red");
+                }else{
+                    nLoc.classList.remove("red");
+                }
+            }
+
+            function enviar() {
+                if(campo20(disco.value) && campo20(artista.value)){
+                    alert("Disco guardado");
+                }else{
+                    alert("Campos obligatorios no validos");
+                }  
+                
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Series</title>
+    <link type="text/css" href="tabla.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="cuerpo"></div>
+    <script>
+      document.addEventListener("DOMContentLoaded", llamarFichero);
+      async function llamarFichero() {
+        let fichero = "series.json";
+        let respuesta = await fetch(fichero);
+        if (respuesta.ok) {
+          try {
+            json = await respuesta.json();
+            crearTabla(json.serie);
+          } catch (error) {
+            alert(error.message);
+          }
+        } else {
+          alert("Error " + respuesta.status + " al intentar acceder al fichero " + fichero);
+        }
+      }
+      function crearTabla(series) {
+        let tabla = document.createElement("table");
+        montarCabecera(tabla);
+
+        let cuerpo = document.getElementById("cuerpo");
+        for (let serie of series) {
+          let tr = document.createElement("tr");
+          for (let elemento in serie) {
+            let td = document.createElement("td");
+            asignarEstilos(serie, elemento, td);
+            if (elemento != "terminada") {
+              td.append(serie[elemento]);
+            } else {
+              let img=document.createElement("img");
+              if (serie[elemento] == "si") {
+                img.src="imagenes/end.png";
+                td.append(img);
+              }else{
+                img.src="imagenes/play.jpg";
+                td.append(img);
+              }
+            }
+
+            tr.append(td);
+          }
+          tabla.append(tr);
+        }
+        cuerpo.append(tabla);
+      }
+
+      function montarCabecera(tabla) {
+        let tCabecera = document.createElement("tr");
+        let cTitulo = document.createElement("th");
+        cTitulo.append("Titulo");
+        let cPlat = document.createElement("th");
+        cPlat.append("Plataforma");
+        let cDirec = document.createElement("th");
+        cDirec.append("Directores");
+        let cYear = document.createElement("th");
+        cYear.append("Año");
+        let cTerm = document.createElement("th");
+        cTerm.append("Terminada");
+
+        tCabecera.append(cTitulo);
+        tCabecera.append(cPlat);
+        tCabecera.append(cDirec);
+        tCabecera.append(cYear);
+        tCabecera.append(cTerm);
+
+        tabla.append(tCabecera);
+      }
+
+      function asignarEstilos(serie, elemento, td) {
+        switch (elemento) {
+          case "titulo":
+            td.classList.add("negrita");
+            break;
+          case "director":
+            td.classList.add("cursiva");
+            break;
+          case "año":
+            if (serie[elemento] <= 2000) {
+              td.classList.add("rojo");
+            } else if (serie[elemento] > 2000 && serie[elemento] <= 2010) {
+              td.classList.add("amarillo");
+            } else if (serie[elemento] >= 2011) {
+              td.classList.add("verde");
+            }
+            break;
+        }
+      }
+    </script>
+  </body>
+</html>

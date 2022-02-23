@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Evento HTML</title>
+    <style>
+      body {
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Eventos</h1>
+    <img src="lamp_off.jpg" />
+    <script>
+      document.body.addEventListener("click", encender);
+      document.body.addEventListener("dblclick", apagar);
+
+      function encender(event) {
+        let target = event.target;
+        if (target.tagName == "IMG") {
+          target.src = "lamp_on.jpg";
+        }
+      }
+
+      function apagar(event) {
+        let target = event.target;
+        if (target.tagName == "IMG") {
+          target.src = "lamp_off.jpg";
+        }
+      }
+    </script>
+  </body>
+</html>

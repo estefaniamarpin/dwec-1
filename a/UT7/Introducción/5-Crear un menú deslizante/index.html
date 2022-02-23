@@ -1,0 +1,58 @@
+<style>
+  .menu ul {
+    margin: 0;
+    list-style: none;
+    padding-left: 20px;
+    display: none;
+  }
+
+  .menu .title {
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+  .menu .title::before {
+    content: '▶ ';
+    font-size: 80%;
+    color: green;
+  }
+
+  .menu.open .title::before {
+    content: '▼ ';
+  }
+
+  .menu.open ul {
+    display: block;
+  }
+
+</style>
+</head>
+
+<body>
+
+<div id="sweeties" class="menu">
+  <span class="title">Sweeties (click me)!</span>
+  <ul>
+    <li>Cake</li>
+    <li>Donut</li>
+    <li>Honey</li>
+  </ul>
+
+</div>
+
+<script>
+  // Cuando se hace click sobre l campo con class ="title", se le asigna/quita una nueva clase al div
+  // Define esa nueva clase en el css
+  // ayuda:  content: '▼ ';
+
+  function mostrar() {
+    let padre=this.parentNode;
+    padre.classList.toggle("open");
+  }
+  let sweeties=document.querySelector('span');
+  sweeties.addEventListener("click", mostrar);
+
+</script>
+
+</body>
+</html>

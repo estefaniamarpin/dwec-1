@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora eventos W3C y bubbling</title>
+    <script type="text/javascript">
+        //Este ejemplo muestra como capturar eventos delegados ("bubbling") en document
+        //Esta forma es mucho más concisa, más elegante y eficaz
+        //evento del manejador: ev => {.....} contiene el elemento HTML sobre el que se clicó en la propiedad target
+        //Atributos id o class se utilizan para filtrar eventos con el método matches(..) antes de invocar manejadores
+        let h3=document.createElement("h3");
+        h3.textContent="Informacion sobre el número";
+        document.addEventListener("click", ev => {
+            document.body.append(h3);
+            if (ev.target.matches("#n1")) vaciar();
+            else if (ev.target.matches("#b1")) cuadrado();
+            else if (ev.target.matches("#b2")) cubo()
+            else if (ev.target.matches("#b3")) frac();
+        });
+
+        function vaciar() {
+            document.getElementById("n1").value = "";
+            h3.textContent="Informacion sobre el número";
+        }
+
+        function cuadrado() {
+            let num = document.getElementById("n1");
+            let resul = num.value * num.value;
+            h3.textContent=`Información: El resultado de la operación x^2 es ${resul}`;
+        }
+
+        function cubo() {
+            let num = document.getElementById("n1");
+            let resul = num.value * num.value * num.value;
+            h3.textContent=`Información: El resultado de la operación x^3 es ${resul}`;
+        }
+
+        function frac() {
+            let num = document.getElementById("n1");
+            let resul = 1 / num.value;
+            h3.textContent=`Información: El resultado de la operación 1/x es ${resul}`;
+        }
+    </script>
+</head>
+
+<body>
+    Número:
+    <input type="text" id="n1">
+    <button id="b1"> x<sup>2</sup></button>
+    <button id="b2"> x<sup>3</sup></button>
+    <button id="b3"> 1/x</sup></button>
+</body>
+
+</html>
