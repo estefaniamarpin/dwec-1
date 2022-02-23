@@ -27,6 +27,14 @@
         let textSinopsis = document.getElementById("sinopsis");
         let img = document.getElementById("imagen");
 
+        let arrayCartelera = [];
+        let posActual = 0;
+
+        let pri = document.getElementById("pri");
+        let ant = document.getElementById("ant");
+        let sig = document.getElementById("sig");
+        let ult = document.getElementById("ult");
+
         select.addEventListener("change", carteleraTeatro);
 
         async function cargarTeatros() {
@@ -41,7 +49,8 @@
                             option.textContent = teatro.teatro;
                             select.append(option);
                         }
-                    carteleraTeatro();
+                    await carteleraTeatro();
+                    mostrar(0);
                 } catch (error) {
                     alert(error.message);
                 }
@@ -55,33 +64,73 @@
             }
         }
         cargarTeatros();
-        
-        function carteleraTeatro(){
-            fetch("./json_teatro/cartelera.json")
-                .then(function (response) {
-                    if (response.ok) {
-                    return response.json();
-                    } else {
-                    throw new Error("Error " +
-                        response.status +
-                        " al intentar acceder al fichero " +
-                        fichero)
-                    }
-                })
-                .then(function (json) {
+
+        async function carteleraTeatro() {
+            let fichero = "./json_teatro/cartelera.json";
+            let respuesta = await fetch(fichero);
+            if (respuesta.ok) {
+                try {
+                    json = await respuesta.json();
                     let cartelera = json;
-                    for (let obra of cartelera.obras){
-                        if(obra.teatro == select.value){
-                            inputTitulo.value = obra.titulo;
-                            inputPrecio.value = obra.precio;
-                            textSinopsis.textContent = obra.sinopsis;
-                            textSinopsis.style.height = `${textSinopsis.scrollHeight}px`
-                            img.src = obra.imagen;
+                    arrayCartelera = [];
+                        for (let obra of cartelera.obras){
+                            if(obra.teatro == select.value){
+                                arrayCartelera.push(obra);
+                            }
                         }
-                    }
-                })
+                        mostrar(0);
+                } catch (error) {
+                    alert(error.message);
+                }
+            } else {
+                alert(
+                    "Error " +
+                    respuesta.status +
+                    " al intentar acceder al fichero " +
+                    fichero
+                );
+            }
         }
 
+        function mostrar(pos){
+            inputTitulo.value = arrayCartelera[pos].titulo;
+            inputPrecio.value = arrayCartelera[pos].precio;
+            textSinopsis.textContent = arrayCartelera[pos].sinopsis;
+            textSinopsis.style.height = `${textSinopsis.scrollHeight}px`
+            img.src = arrayCartelera[pos].imagen;
+            posActual = pos;
+        }
+        
+
+        function primero(){
+            mostrar(0);
+        }
+
+        function anterior(){
+            if(posActual==0){
+                mostrar(arrayCartelera.length-1)
+            } else {
+                mostrar(posActual-1);
+            }
+            
+        }
+        
+        function siguiente(){
+            if(posActual==arrayCartelera.length-1){
+                mostrar(0)
+            } else {
+                mostrar(posActual+1);
+            }
+        }
+        
+        function ultimo(){
+            mostrar(arrayCartelera.length-1);
+        }
+
+        pri.addEventListener("click", primero);
+        ant.addEventListener("click", anterior);
+        sig.addEventListener("click", siguiente);
+        ult.addEventListener("click", ultimo);
         
 
     </script>
