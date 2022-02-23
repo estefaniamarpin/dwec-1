@@ -99,6 +99,18 @@
             textSinopsis.style.height = `${textSinopsis.scrollHeight}px`
             img.src = arrayCartelera[pos].imagen;
             posActual = pos;
+            if(posActual == 0){
+                pri.disabled = true;
+                ant.disabled = true;
+            } else if (posActual == arrayCartelera.length-1){
+                ult.disabled = true;
+                sig.disabled = true;
+            } else {
+                pri.disabled = false;
+                ant.disabled = false;
+                ult.disabled = false;
+                sig.disabled = false;
+            }
         }
         
 
@@ -107,20 +119,11 @@
         }
 
         function anterior(){
-            if(posActual==0){
-                mostrar(arrayCartelera.length-1)
-            } else {
-                mostrar(posActual-1);
-            }
-            
+            mostrar(posActual-1);
         }
         
         function siguiente(){
-            if(posActual==arrayCartelera.length-1){
-                mostrar(0)
-            } else {
-                mostrar(posActual+1);
-            }
+            mostrar(posActual+1);
         }
         
         function ultimo(){
