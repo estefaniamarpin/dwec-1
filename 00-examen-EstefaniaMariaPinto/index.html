@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Alquiler de coches</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        text-align: center;
+      }
+
+      td {
+        border: 1px solid blue;
+      }
+
+      #datosCompra {
+        display: none;
+      }
+
+      /* table#alquilados {
+        visibility: hidden;
+      } */
+
+      .mostrarCoches table {
+        width: 50%;
+        float: left;
+      }
+
+      .mostrarCoches .foto {
+        width: 50%;
+        float: left;
+      }
+
+      .anularFloat {
+        clear: both;
+      }
+      .seleccionada {
+        background-color: yellow;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>ALQUILER DE COCHES</h1>
+    <section id="secNoAlquilados">
+      <h2>COCHES NO ALQUILADOS</h2>
+      <div class="mostrarCoches">
+        <table id="noAlquilados"></table>
+        <div class="foto">
+          <img src="" alt="" />
+        </div>
+      </div>
+      <div class="anularFloat"></div>
+      <div id="datosCompra">
+        <div>
+          <label for="nif">NIF Comprador:</label
+          ><input type="text" id="nif" name="nif" />
+        </div>
+        <div>
+          <label for="codigo">Código coche:</label
+          ><input type="text" id="codigo" name="codigo" disabled />
+        </div>
+        <div>
+          <label for="marca">Marca coche:</label
+          ><input type="text" id="marca" name="marca" disabled />
+        </div>
+        <button id="confirmar">Confirmar</button>
+      </div>
+    </section>
+    <section id="secAquilados">
+      <h2>COCHES ALQUILADOS</h2>
+      <input type="button" value="Mostrar coches alquilados" id="mostrar" />
+      <div class="mostrarCoches">
+        <table id="alquilados"></table>
+        <div class="foto">
+          <img />
+        </div>
+      </div>
+    </section>
+    <script src="alquiler.js"></script>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+{
+"alquilados":
+    [
+		{
+		"codigo": "1",
+		"marca": "Audi",
+		"NIF": "1111111"
+		},	
+        {
+		"codigo": "3",
+		"marca": "Honda",
+		"NIF": "2222222"
+		},	
+		{
+		"codigo": "5",
+		"marca": "Tesla",
+		"NIF": "111111"
+		}
+    ]
+}
