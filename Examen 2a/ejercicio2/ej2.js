@@ -35,7 +35,7 @@ function iniciar() {
     let anul = document.createElement("button");
     anul.value = "anul";
     anul.textContent = "Anular matricula";
-    let ver = document.createElement("button");
+    let ver = document.createElement("button"); //se tiene que hacer en cada tr un button nuevo
     ver.value = "ver";
     ver.textContent = "Ver datos";
     cargarTabla();
