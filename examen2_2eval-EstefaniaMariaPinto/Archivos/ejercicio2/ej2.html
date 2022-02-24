@@ -33,7 +33,7 @@
                     select.append = option;
                 }
             }
-        }
+        }//no carga porque: 1. array = JSON.parse(xhr.response) 2. select.append(option)
 
         let xhrAlumnos = new XMLHttpRequest();
         xhrAlumnos.open('GET', 'alumnos.json');
@@ -47,8 +47,8 @@
                 let arrayAlumnos = [];
 
                 for (let alumno of array){
-                    arrayAlumnos.append = alumno;
-                }
+                    arrayAlumnos.append = alumno; //en un array es arrayAlumnos.push(alumno)
+                }                                 //y no es ecesario porque ya estaría en array
             }
         }
 
